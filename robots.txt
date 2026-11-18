@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pool.navoku.com/sitemap.xml

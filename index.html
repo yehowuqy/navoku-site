@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>实体台球 AI 训练工具导航 | Real Billiards AI Tools</title>
+<meta name="description" content="收录线下真实台球场景的 AI 训练工具：站姿与出杆动作分析、台面视觉瞄准、训练计划与数据记录、球房商用 AI 系统及配套硬件。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="实体台球 AI 训练工具导航 | Real Billiards AI Tools">
+<meta property="og:description" content="线下真实台球场景的 AI 训练工具合集与选购指南。">
+<link rel="canonical" href="https://pool.navoku.com/">
+<meta property="og:url" content="https://pool.navoku.com/">
+<meta name="robots" content="index, follow">
+<style>
+  :root{
+    --bg:#0e1411;
+    --bg-soft:#161f1a;
+    --panel:#1c2721;
+    --line:#2c3a31;
+    --text:#e8efe9;
+    --text-dim:#9db3a6;
+    --accent:#3fae7a;
+    --accent-soft:#2b6e4f;
+    --warn:#c9a14a;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.6;
+    font-size:16px;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+  /* ===== 顶部 ===== */
+  header{border-bottom:1px solid var(--line);background:var(--bg-soft)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:16px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{width:36px;height:36px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;flex:none}
+  .brand-mark svg{width:22px;height:22px}
+  .brand h1{font-size:18px;font-weight:700;letter-spacing:.5px}
+  .brand p{font-size:12px;color:var(--text-dim)}
+  nav.top-nav{display:flex;gap:18px;font-size:14px;color:var(--text-dim)}
+  nav.top-nav a:hover{color:var(--text)}
+
+  /* ===== Hero ===== */
+  .hero{padding:36px 0 24px}
+  .hero h2{font-size:26px;font-weight:700;margin-bottom:10px}
+  .hero p{color:var(--text-dim);max-width:680px;font-size:15px}
+  .hero .note{margin-top:14px;padding:12px 14px;border-left:3px solid var(--warn);background:var(--panel);border-radius:0 var(--radius) var(--radius) 0;font-size:13px;color:var(--text-dim)}
+
+  /* ===== 广告位：顶部横幅 ===== */
+  .ad-banner{
+    margin:18px 0;padding:22px;text-align:center;
+    background:var(--panel);border:1px dashed var(--line);border-radius:var(--radius);
+    color:var(--text-dim);font-size:13px;
+  }
+  /* AdSense 顶部横幅广告位：在此处粘贴 AdSense 代码
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXX" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  */
+
+  /* ===== 搜索 ===== */
+  .search-bar{margin:18px 0}
+  .search-bar input{
+    width:100%;padding:14px 16px;font-size:16px;border-radius:var(--radius);
+    background:var(--panel);border:1px solid var(--line);color:var(--text);outline:none;
+  }
+  .search-bar input::placeholder{color:var(--text-dim)}
+  .search-bar input:focus{border-color:var(--accent)}
+
+  /* ===== 主体布局 ===== */
+  .layout{display:grid;grid-template-columns:220px 1fr 260px;gap:24px;padding:10px 0 40px}
+
+  /* 左侧筛选 */
+  aside.filters{position:sticky;top:20px;align-self:start}
+  .filter-group{margin-bottom:22px}
+  .filter-group h3{font-size:13px;color:var(--text-dim);margin-bottom:10px;font-weight:600;letter-spacing:.5px}
+  .filter-group ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .filter-group button{
+    background:none;border:none;color:var(--text-dim);font-size:14px;cursor:pointer;
+    text-align:left;padding:6px 8px;border-radius:8px;width:100%;
+  }
+  .filter-group button:hover{background:var(--panel);color:var(--text)}
+  .filter-group button.active{background:var(--accent-soft);color:var(--text)}
+  .tag-filter{display:flex;flex-wrap:wrap;gap:8px}
+  .tag-filter button{
+    background:var(--panel);border:1px solid var(--line);border-radius:20px;
+    padding:6px 12px;font-size:13px;color:var(--text-dim);cursor:pointer;
+  }
+  .tag-filter button.active{background:var(--accent-soft);border-color:var(--accent);color:var(--text)}
+
+  /* 工具卡片 */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s;
+  }
+  .card:hover{border-color:var(--accent)}
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .card-title{font-size:16px;font-weight:600}
+  .card-desc{font-size:13.5px;color:var(--text-dim);flex:1}
+  .card-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:11.5px;padding:3px 9px;border-radius:12px;background:var(--bg-soft);color:var(--text-dim);border:1px solid var(--line)}
+  .chip.hot{color:var(--warn);border-color:var(--warn)}
+  .chip.cn{color:var(--accent);border-color:var(--accent-soft)}
+  .card-link{font-size:13px;color:var(--accent);font-weight:500}
+  .card-link:hover{text-decoration:underline}
+
+  /* 右侧栏 */
+  aside.sidebar{position:sticky;top:20px;align-self:start;display:flex;flex-direction:column;gap:20px}
+  .rank-box{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+  .rank-box h3{font-size:14px;margin-bottom:12px}
+  .rank-box ol{list-style:none;counter-reset:rank;display:flex;flex-direction:column;gap:10px}
+  .rank-box li{counter-increment:rank;display:flex;gap:10px;font-size:13.5px;color:var(--text-dim)}
+  .rank-box li::before{content:counter(rank);flex:none;width:20px;height:20px;border-radius:6px;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--accent)}
+  .ad-side{
+    padding:18px;text-align:center;background:var(--panel);border:1px dashed var(--line);
+    border-radius:var(--radius);color:var(--text-dim);font-size:12.5px;
+  }
+  /* AdSense 右侧竖版广告位：在此处粘贴 AdSense 代码（共两处，上下各一） */
+
+  .empty{grid-column:1/-1;text-align:center;color:var(--text-dim);padding:60px 0;font-size:15px}
+
+  /* ===== 底部页面 ===== */
+  .pages{border-top:1px solid var(--line);background:var(--bg-soft)}
+  .pages-inner{padding:30px 0}
+  .pages-inner h2{font-size:18px;margin-bottom:12px}
+  .pages-inner p{font-size:14px;color:var(--text-dim);margin-bottom:10px;max-width:760px}
+  .page-section{display:none}
+  .page-section.active{display:block}
+  footer{border-top:1px solid var(--line);padding:20px 0;color:var(--text-dim);font-size:12.5px;text-align:center}
+
+  /* ===== 文章列表 ===== */
+  .article-list{display:flex;flex-direction:column;gap:16px;padding:10px 0 40px}
+  .article-item{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;cursor:pointer;transition:border-color .15s}
+  .article-item:hover{border-color:var(--accent)}
+  .article-item h3{font-size:17px;margin-bottom:8px}
+  .article-item p{font-size:14px;color:var(--text-dim)}
+  .article-item .read{font-size:13px;color:var(--accent);margin-top:10px;display:inline-block}
+
+  /* ===== 文章详情 ===== */
+  .article-view{max-width:760px;margin:0 auto;padding:20px 0 50px}
+  .article-view .back{font-size:14px;color:var(--text-dim);cursor:pointer;margin-bottom:18px;display:inline-block}
+  .article-view .back:hover{color:var(--text)}
+  .article-view h2{font-size:24px;margin-bottom:14px;line-height:1.35}
+  .article-view .lead{color:var(--text-dim);font-size:15px;margin-bottom:24px}
+  .article-view h4{font-size:16px;margin:24px 0 10px;color:var(--text)}
+  .article-view p{font-size:14.5px;color:var(--text-dim);margin-bottom:10px}
+  .article-view ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14.5px}
+  .article-view li{margin-bottom:6px}
+
+  /* ===== 响应式 ===== */
+  @media (max-width:960px){
+    .layout{grid-template-columns:1fr}
+    aside.filters,aside.sidebar{position:static}
+    .cards{grid-template-columns:1fr}
+    .hero h2{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e8efe9" stroke-width="1.8">
+          <circle cx="12" cy="12" r="8"/><line x1="6" y1="18" x2="18" y2="6"/>
+        </svg>
+      </div>
+      <div>
+        <h1>实体台球 AI 工具导航</h1>
+        <p>Real Billiards AI Training Tools</p>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <a href="#" data-page="home">工具目录</a>
+      <a href="#" data-page="articles">教程文章</a>
+      <a href="#" data-page="about">关于我们</a>
+      <a href="#" data-page="privacy">隐私政策</a>
+      <a href="#" data-page="contact">联系我们</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== 首页 ===== -->
+  <section id="page-home" class="page-section active">
+
+    <div class="hero">
+      <h2>线下真实台球场景的 AI 训练工具合集</h2>
+      <p>收录用于真实球桌训练的第三方成熟产品：动作与站姿分析、台面线路辅助、训练计划与击球数据、球房商用系统，以及配套硬件。页面仅做客观介绍，工具对拍摄机位、光照与设备均有一定要求，效果以各产品官方说明为准。</p>
+      <div class="note">说明：本导航站不提供、不下载任何游戏辅助或作弊工具，所有收录产品均面向线下实体台球训练与教学场景。</div>
+    </div>
+
+    <!-- AdSense 顶部横幅广告位 -->
+    <div class="ad-banner">【顶部横幅广告位 · AdSense 预留】后期在此粘贴广告代码</div>
+
+    <div class="search-bar">
+      <input type="search" id="searchInput" placeholder="搜索工具名称或功能描述，例如：站姿分析、台面线路、计分系统…" aria-label="搜索工具">
+    </div>
+
+    <div class="layout">
+      <!-- 左侧筛选 -->
+      <aside class="filters">
+        <div class="filter-group">
+          <h3>分类</h3>
+          <ul id="categoryList"></ul>
+        </div>
+        <div class="filter-group">
+          <h3>标签筛选</h3>
+          <div class="tag-filter" id="tagList"></div>
+        </div>
+      </aside>
+
+      <!-- 卡片网格 -->
+      <section class="cards" id="cardGrid" aria-live="polite"></section>
+
+      <!-- 右侧栏 -->
+      <aside class="sidebar">
+        <div class="rank-box">
+          <h3>热门工具排行</h3>
+          <ol id="rankList"></ol>
+        </div>
+        <div class="ad-side">【右侧竖版广告位 1 · AdSense 预留】</div>
+        <div class="ad-side">【右侧竖版广告位 2 · AdSense 预留】</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== 文章列表 ===== -->
+  <section id="page-articles" class="page-section">
+    <div class="hero">
+      <h2>台球 AI 训练指南与评测</h2>
+      <p>围绕真实球桌训练的选购指南、设备搭建、动作分析与商用系统科普，帮助你判断哪些工具真正适合当前水平。</p>
+    </div>
+    <div class="article-list" id="articleList"></div>
+  </section>
+
+  <!-- ===== 文章详情 ===== -->
+  <section id="page-article-detail" class="page-section">
+    <div class="article-view" id="articleDetail"></div>
+  </section>
+
+  <!-- ===== 关于我们 ===== -->
+  <section id="page-about" class="page-section pages-inner">
+    <h2>关于我们</h2>
+    <p>本站是一个实体台球 AI 训练工具导航，整理面向线下真实球桌的训练、教学与球房经营类产品，帮助台球爱好者、教练与球房经营者快速了解可用工具及其适用场景。</p>
+    <p>收录内容以公开可查的产品信息为基础，客观呈现各工具的功能与定位；本站不参与产品开发、销售与售后，具体功能、价格与可用性以各产品官网为准。</p>
+  </section>
+
+  <!-- ===== 隐私政策 ===== -->
+  <section id="page-privacy" class="page-section pages-inner">
+    <h2>隐私政策</h2>
+    <p>本站为静态导航页面，不主动收集访客姓名、联系方式等个人身份信息。页面可能接入第三方广告联盟（如 Google AdSense），第三方可能通过 Cookie 记录广告展示与点击情况，相关数据处理遵循其各自隐私政策。</p>
+    <p>如您通过页面链接离开本站，我们不对第三方网站的内容与隐私实践负责。您可通过浏览器设置管理或清除 Cookie；停用 Cookie 不影响本站工具目录的正常浏览。</p>
+    <p>政策更新：本页内容可能随站点运营调整而更新，更新后将直接在此页面发布。</p>
+  </section>
+
+  <!-- ===== 联系我们 ===== -->
+  <section id="page-contact" class="page-section pages-inner">
+    <h2>联系我们</h2>
+    <p>如果您是台球 AI 工具或硬件厂商，希望申请收录、更新产品信息或洽谈推广合作，可通过以下方式联系：</p>
+    <p>邮箱：contact@example.com（上线后替换为真实联系邮箱）</p>
+    <p>请在邮件中提供：产品名称、官网链接、所属分类、功能简介与可公开的合作方式。本站会在收到信息后评估是否收录。</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Real Billiards AI Tools · 本站仅做工具导航介绍，不代表所收录产品官方立场</div>
+</footer>
+
+<script>
+// ===== 工具数据：link 字段后期可替换为官网链接或联盟推广链接 =====
+const CATEGORIES = [
+  { id: "posture",  name: "击球动作 / 站姿 AI 分析" },
+  { id: "table",    name: "台面视觉瞄准 AI" },
+  { id: "training", name: "AI 训练计划 & 击球数据记录" },
+  { id: "venue",    name: "球房商用 AI 系统" },
+  { id: "hardware", name: "台球 AI 硬件配件" }
+];
+
+const TOOLS = [
+  // 动作 / 站姿分析
+  { id:1,  cat:"posture", title:"PerformStars", desc:"基于真实球桌视频的计算机视觉分析，自动识别击球、球位与轨迹，生成逐杆技术报告与训练建议。", tags:["海外","付费","APP"], hot:true,  link:"https://performstars.com/" },
+  { id:2,  cat:"posture", title:"涨球儿", desc:"国内台球训练应用，可上传击球视频获得教练指导与教学内容，面向台球爱好者的线上练习平台。", tags:["国内可用","免费+付费","APP"], hot:false, link:"https://www.buole.com/app" },
+  { id:3,  cat:"posture", title:"QMD4 Stroke Analyzer", desc:"安装在球杆上的蓝牙传感配件，配合手机 App 记录出杆速度、杆头轨迹与肘部变化，输出动作曲线图。", tags:["海外","硬件+APP"], hot:false, link:"https://www.theqmd.com/" },
+
+  // 台面视觉瞄准
+  { id:4,  cat:"table", title:"Railbird", desc:"AI 镜头跟踪真实球桌，记录每一杆并统计进球率、连续进球等数据，用于训练复盘与走位分析。", tags:["海外","免费+付费","APP"], hot:true, link:"https://railbird.ai/" },
+  { id:5,  cat:"table", title:"CuePro", desc:"支持拍摄真实球桌读取球位，提供选球、瞄准线路与母球走位规划参考，附慢动作视频复盘功能。", tags:["海外","免费+付费","APP"], hot:false, link:"https://apps.apple.com/ge/app/cuepro-pool-shot-advisor/id6787765324" },
+
+  // 训练计划 & 数据记录
+  { id:6,  cat:"training", title:"DrillRoom", desc:"AI 台球教练应用，含 80+ 训练 drills、杆数统计、速度控制与线路图编辑，跟踪每次练习的进步数据。", tags:["海外","免费+付费","APP"], hot:true, link:"https://drillroom.ai/" },
+  { id:7,  cat:"training", title:"RackUp", desc:"台球比赛计分与评分应用，覆盖 8/9/10 球等赛制，自动记录局分、回合与防守，生成比赛战绩与水平评级。", tags:["海外","免费+付费","APP"], hot:false, link:"https://rackuppool.com/" },
+
+  // 球房商用 AI 系统
+  { id:8,  cat:"venue", title:"Supervisions 智能计分系统", desc:"基于机器视觉与 AI 的商用智能斯诺克/台球计分系统，实现自动计分、犯规判别、数据统计，服务俱乐部与赛事。", tags:["国内可用","商用设备"], hot:true, link:"https://supervisions.cn/" },
+  { id:9,  cat:"venue", title:"RackReel", desc:"AI 自动识别击球片段，把练习或比赛录像剪辑成精彩集锦，可筛选单杆生成复盘或分享视频。", tags:["海外","付费","SaaS"], hot:false, link:"https://rackreel.app/" },
+
+  // 硬件配件
+  { id:10, cat:"hardware", title:"球杆动作传感配件（QMD4 类）", desc:"绑在球杆后把上的蓝牙传感器，采集三维出杆数据并同步手机 App，属于动作训练类硬件，需配合对应软件使用。", tags:["海外","硬件"], hot:false, link:"https://www.theqmd.com/" },
+  { id:11, cat:"hardware", title:"高位俯拍摄像头支架", desc:"用于固定手机或摄像头的桌面上方支架，提供稳定俯拍机位，减少手持晃动与透视变形，是台面视觉识别的基础配件。", tags:["通用","硬件"], hot:false, link:"" },
+  { id:12, cat:"hardware", title:"台面补光方案", desc:"均匀照亮台呢、减少顶灯反光与局部阴影的灯光配置，可提升视频复盘与球位识别的稳定性，需按球桌尺寸选配。", tags:["通用","硬件"], hot:false, link:"" }
+];
+
+const ARTICLES = [
+ {
+  "title": "Best AI Posture Analyzer for Pool: What to Look For in 2026",
+  "intro": "An AI posture analyzer for pool uses a phone or fixed camera to record your stance, grip, and cue delivery, then compares the movement against reference mechanics. For home players who cannot see their own setup from a side or overhead angl",
+  "sections": [
+   {
+    "h": "Why Posture Matters in Pool",
+    "p": [
+     "A consistent address position supports a straight cue swing. Common problems include an open or closed shoulder line, a dropping elbow during the stroke, a rising head, and an uneven bridge hand. These issues often compound over hundreds of shots, and players rarely notice them without a recorded side view.",
+     "AI posture tools do not replace a coach. They capture evidence: a frame-by-frame record of where your body was at address, backswing, and delivery. You then judge whether the change feels stable and consistent."
+    ]
+   },
+   {
+    "h": "Core Features to Compare",
+    "p": [
+     "1. Camera angle support",
+     "The most reliable analysis comes from a side-on tripod showing the shoulder, elbow, and cue line, plus an optional overhead view of the feet and bridge. Tools that only analyze a single front-facing shot have limited value for stroke mechanics.",
+     "2. Skeleton or joint tracking",
+     "Look for apps that mark the key joints — shoulder, elbow, wrist, head, and hand — rather than just playing back the video. Joint markers make deviations visible over several strokes.",
+     "3. Comparison against reference strokes",
+     "Some platforms let you overlay your stroke with a reference shot or compare two of your own recordings taken weeks apart. This before/after view is more useful than a single vague score.",
+     "4. Rhythm and timing feedback",
+     "Beyond static posture, delivery rhythm — backswing length, pause, and follow-through — is worth tracking. The best analyzers describe these in plain terms rather than producing an unexplained number.",
+     "5. Offline or local review",
+     "Recording and reviewing footage should not depend on a weak Wi-Fi connection at the hall. Check whether videos are stored on the device or uploaded to a cloud service."
+    ]
+   },
+   {
+    "h": "Free vs Paid Tools",
+    "p": [
+     "- Free apps usually offer video replay, basic joint markers, and manual side-by-side comparison. They suit beginners who want to spot obvious posture faults.",
+     "- Paid apps often add progress tracking, coached-style reports, cloud history, and reference-shot overlays. They suit players training over several months."
+    ]
+   },
+   {
+    "h": "Realistic Expectations",
+    "p": [
+     "AI posture analysis depends heavily on filming conditions. A side angle blocked by a neighboring table, mixed overhead lighting, or a low-resolution camera will reduce accuracy. Most tools work best when the camera is fixed at eye level or slightly above, with even lighting and the whole body and cue visible.",
+     "No analyzer can guarantee better results on its own. Improvements come from recording, adjusting one element at a time, and repeating drills until the new position feels automatic."
+    ]
+   },
+   {
+    "h": "Who Should Use an AI Posture Analyzer?",
+    "p": [
+     "- Self-coached home players who want an outside view of their stance.",
+     "- Students working with a coach who can use the recordings between sessions.",
+     "- Amateur competitors preparing for local tournaments and checking consistency over a season."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "The best AI posture analyzer for pool is the one that films your side and stroke clearly, shows joint movement in an understandable way, and lets you compare shots over time. Start with a free or low-cost app, fix your filming angle first, and upgrade only if you are recording regularly."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Billiards Training Apps: A Practical Review Framework",
+  "intro": "AI billiards training apps promise faster improvement by analyzing shots, suggesting drills, and tracking progress. In practice, these apps differ a lot in what they measure, how they record, and whether their feedback can be acted on direc",
+  "sections": [
+   {
+    "h": "What an AI Training App Can Realistically Do",
+    "p": [
+     "Most current apps fall into three roles:",
+     "1. Video analysis — record a stroke, review it frame by frame, and compare with reference mechanics.",
+     "2. Drill planning — generate a practice session based on your level, target skill, and available table time.",
+     "3. Data tracking — log make percentages, misses, and drill outcomes over weeks or months.",
+     "Few apps do all three well. Decide which gap in your practice matters most before choosing."
+    ]
+   },
+   {
+    "h": "Review Checklist",
+    "p": [
+     "Setup and recording",
+     "- Can the app record directly from the phone camera, or must you import existing video?",
+     "- Does it support side, overhead, and rear angles?",
+     "- Are recordings saved locally, and can you export them?",
+     "Analysis output",
+     "- Does the app name a specific fault, such as elbow drop or head rise, or only give a generic score?",
+     "- Are the markers or measurements visible and easy to understand?",
+     "- Can you compare two recordings side by side?",
+     "Drill and progress features",
+     "- Does it break practice into short, repeatable drills?",
+     "- Does it record your completion rate over time?",
+     "- Can you focus on one skill, such as cut shots or follow-through, at a time?",
+     "Pricing and limits",
+     "- Check whether free reports are watermarked or limited to a few recordings.",
+     "- Confirm whether the subscription is monthly or annual, and whether drill plans require a paid tier.",
+     "- Look for a trial before committing to a yearly plan."
+    ]
+   },
+   {
+    "h": "Common Strengths",
+    "p": [
+     "Good training apps structure otherwise unplanned practice. Many players arrive at a table and hit loose balls for an hour; an app that assigns five focused drills gives the session a clear goal. History tracking also makes slow improvement visible, which keeps motivation up."
+    ]
+   },
+   {
+    "h": "Common Weaknesses",
+    "p": [
+     "- Over-reliance on a camera that does not capture the whole body.",
+     "- Feedback written in vague coaching language without a concrete next adjustment.",
+     "- Cloud upload requirements that fail on hall networks.",
+     "- Scores that look precise but depend on uneven lighting or a poor angle."
+    ]
+   },
+   {
+    "h": "How to Test an App Before Subscribing",
+    "p": [
+     "Record three strokes in the same setup you actually use at home or the hall. Watch whether the app flags a real issue you recognize, whether the advice matches what you feel, and whether the comparison view is clear. If the reports feel generic after three sessions, the app is unlikely to become useful."
+    ]
+   },
+   {
+    "h": "Who These Apps Suit",
+    "p": [
+     "- Players who practice alone and need a session structure.",
+     "- Amateurs who want a long-term record of their progress.",
+     "- Anyone preparing to take lessons, who can bring recordings to the coach."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "Judge an AI billiards training app by whether its feedback is specific, reviewable over time, and easy to act on. A simple app that shows clear video comparison often beats a feature-heavy platform that produces vague scores. Test with your own recordings before paying."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Pool Table Vision Training Systems: How Camera-Based Table Analysis Works",
+  "intro": "A pool table vision training system uses a camera mounted above or beside the table to detect ball positions, track shots, and suggest lines. These systems are used in coaching rooms, commercial halls, and increasingly by dedicated home pla",
+  "sections": [
+   {
+    "h": "The Main Hardware Layout",
+    "p": [
+     "Overhead camera",
+     "An overhead or high-angle camera gives the clearest view of ball positions, pockets, and table geometry. This is the preferred layout for any system that draws shot lines or tracks where balls finish. Mounting height must clear the cueing player and avoid reflections on the cloth.",
+     "Side camera",
+     "A side camera focuses on the player's stroke and body position rather than the balls. Some installations run both: one camera for table vision, one for mechanics.",
+     "Lighting",
+     "Even, diffuse lighting reduces glare and shadows that confuse ball detection. Strong single overhead lights create bright spots and dark pockets; soft, spread illumination works better for vision systems."
+    ]
+   },
+   {
+    "h": "What the Software Does",
+    "p": [
+     "A typical vision pipeline has four stages:",
+     "1. Calibration — the system maps the camera view to the real table coordinates and pocket positions.",
+     "2. Ball detection — identifies object balls and the cue ball by color, size, and round shape.",
+     "3. Tracking — follows ball movement between frames and records where each shot ends.",
+     "4. Line or review output — displays suggested routes, records outcomes, or replays the shot for review.",
+     "Detection is harder on real cloth than on a clean screen. Reflections, partially hidden balls, shadows, and camera distortion all reduce confidence, which is why stable mounting and lighting matter more than a powerful model."
+    ]
+   },
+   {
+    "h": "Accuracy Limits",
+    "p": [
+     "No table vision system works in every condition. Expect reduced reliability when:",
+     "- The camera angle is steep or off-center, stretching the table geometry.",
+     "- Balls cluster or rest against cushions where shapes are partially hidden.",
+     "- Cloth color and lighting vary between sessions.",
+     "- The player's hand, cue, or body enters the frame during detection.",
+     "Systems tuned for a fixed home table are more accurate than portable cameras moved between locations."
+    ]
+   },
+   {
+    "h": "Home vs Commercial Setups",
+    "p": [
+     "Home or coaching room",
+     "A fixed overhead camera, consistent lighting, and basic shot review suit personal training. The goal is stable detection of ball positions and post-shot review, not unattended commercial scoring.",
+     "Commercial hall",
+     "Commercial systems add auto-scoring, table booking, member records, and highlight capture. They usually require dedicated mounting, regular calibration, and support from the supplier."
+    ]
+   },
+   {
+    "h": "Setting Up for Better Detection",
+    "p": [
+     "- Keep the camera centered and high enough to cover the full bed of the table.",
+     "- Calibrate after moving the camera or changing lights.",
+     "- Minimize clutter and bright reflections on the cloth.",
+     "- Record several practice shots to confirm balls are detected before relying on line suggestions."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "Pool table vision training systems rely on a stable camera, controlled lighting, and calibration more than on any single AI feature. Start with a fixed overhead setup and a clear review workflow; expand to scoring or projection only once basic detection is reliable."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Smart Billiards Systems for Pool Halls: A Buyer's Guide",
+  "intro": "A smart billiards system for a pool hall combines cameras, scoring software, and back-office tools to reduce manual scorekeeping, improve member experience, and highlight practice footage. For owners, the decision comes down to installation",
+  "sections": [
+   {
+    "h": "What a Commercial Hall System Usually Includes",
+    "p": [
+     "Camera and detection",
+     "Cameras above tables detect balls and track shots for automatic scoring or review. Some systems also capture highlights of completed racks.",
+     "Scoring and table management",
+     "Software tracks scores, game type, table occupancy, and session length. In larger halls, this connects to booking, membership, and billing.",
+     "Member and coaching tools",
+     "Some platforms keep player profiles, training records, and coach assignments, useful for halls that offer lessons alongside casual play.",
+     "Highlight or video output",
+     "Automatic clip generation can produce short footage of good shots for social posting or player review. Quality depends on camera angle and detection reliability."
+    ]
+   },
+   {
+    "h": "Key Questions Before Buying",
+    "p": [
+     "1. Per-table or whole-hall pricing — ask whether costs scale per table, and what hardware and installation are included.",
+     "2. Installation and calibration — who mounts the cameras, calibrates each table, and adjusts when lighting changes?",
+     "3. Maintenance support — what happens when detection misses a shot? Is there remote support or an on-site visit?",
+     "4. Network and storage — confirm whether video is stored locally or in the cloud, and what happens during an outage.",
+     "5. Privacy and signage — recorded players should be informed; check local rules on cameras in public venues.",
+     "6. Upgrade path — whether new tables can be added later without replacing the existing system."
+    ]
+   },
+   {
+    "h": "Common Strengths",
+    "p": [
+     "- Fewer disputes over scores when shots are recorded.",
+     "- Easier management of occupancy and billing in busy halls.",
+     "- Coaching and retention tools for venues that teach lessons."
+    ]
+   },
+   {
+    "h": "Common Pitfalls",
+    "p": [
+     "- Overpromised detection in halls with mixed lighting, moving crowds, and busy neighboring tables.",
+     "- Hidden recurring fees for cloud storage or software licenses.",
+     "- Systems that require a specific camera or cloth setup you cannot maintain.",
+     "- Complicated staff training that leads the hall to revert to manual scoring."
+    ]
+   },
+   {
+    "h": "Estimating the Return",
+    "p": [
+     "Commercial systems usually pay back through saved staff time, reduced scoring disputes, and added membership or coaching revenue. A hall that mostly hosts casual, short games may see less benefit than one running leagues, lessons, or member programs."
+    ]
+   },
+   {
+    "h": "Pilot First",
+    "p": [
+     "Ask suppliers for a trial on one table for several weeks. Watch real sessions under normal hall conditions — busy hours, varied lighting, and multiple players — before committing to every table."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "A smart billiards system can improve operations for a serious pool hall, but it must be installed, calibrated, and supported properly. Compare per-table cost, maintenance, and detection reliability under real conditions, and run a single-table pilot before a full rollout."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Cue Stroke Analysis Software: What It Measures and Why It Matters",
+  "intro": "Cue stroke analysis focuses on the delivery: how the cue moves back, pauses, and follows through. AI software for this task records the stroke and marks the cue line, elbow, and hand position across frames. Unlike posture analysis of the wh",
+  "sections": [
+   {
+    "h": "What Stroke Analysis Tracks",
+    "p": [
+     "Cue line",
+     "The software checks whether the cue stays aligned with the intended shot line through the backswing and delivery. A wandering cue often shows up as side-to-side movement before contact.",
+     "Elbow and wrist",
+     "Markers on the elbow and wrist reveal whether the elbow drops or rises during the stroke, and whether the wrist stays relaxed through follow-through.",
+     "Backswing and follow-through length",
+     "Comparing the length of the backswing and follow-through helps judge a balanced delivery. A very short follow-through often cuts the stroke off early.",
+     "Rhythm and pause",
+     "Some tools measure the pause at the top of the backswing and the smoothness of the forward motion. Rhythm varies by player, so consistency matters more than matching a single ideal tempo."
+    ]
+   },
+   {
+    "h": "How to Read the Results",
+    "p": [
+     "A good report should show the actual frames or markers behind any conclusion. Avoid tools that give a single score without showing where the stroke changed. When reviewing, compare several strokes rather than one lucky shot; a single delivery can look clean by chance."
+    ]
+   },
+   {
+    "h": "Filming Setup for Stroke Analysis",
+    "p": [
+     "- Place the camera to the side, level with the cue, so the cue and elbow are visible along their full length.",
+     "- Keep the whole body and cue in frame; cropping the hand or elbow hides the most important markers.",
+     "- Use even lighting and a steady tripod; handheld phone footage adds motion that the software may misread.",
+     "- Record multiple shots from the same angle before drawing conclusions."
+    ]
+   },
+   {
+    "h": "Common Stroke Faults These Tools Reveal",
+    "p": [
+     "- An elbow that drops during the forward stroke.",
+     "- A cue that lifts or twists before contact.",
+     "- A short, cut-off follow-through.",
+     "- A rising head or shifting body that pulls the cue off line."
+    ]
+   },
+   {
+    "h": "Realistic Limits",
+    "p": [
+     "AI stroke analysis cannot feel the tension in your grip or the weight of the cue. It shows movement, not cause. If a marker shows an elbow drop, you still need to test small adjustments and confirm the change feels stable over many shots.",
+     "Analysis is also sensitive to occlusion: a hand, bridge, or neighboring ball blocking the cue line can lower accuracy."
+    ]
+   },
+   {
+    "h": "Who Should Use Stroke Analysis",
+    "p": [
+     "- Players who suspect their delivery, not their aim, is causing misses.",
+     "- Amateurs who have recorded strokes but cannot read the mechanics themselves.",
+     "- Students refining a coach's feedback between lessons."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "AI cue stroke analysis software is most useful when it shows clear frame-by-frame markers of the cue, elbow, and wrist, and lets you compare strokes over time. Set up a steady side angle first, review several shots together, and treat the output as evidence to adjust from, not as a final verdict."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "How to Use AI to Practice Pool at Home: A Step-by-Step Setup",
+  "intro": "Practicing pool at home is different from playing in a busy hall. You control the table, lighting, and camera, which makes AI tools more reliable than they are in a crowded venue. This guide walks through a simple home setup for reviewing y",
+  "sections": [
+   {
+    "h": "Step 1: Fix Your Filming Angle",
+    "p": [
+     "Start with a side-on tripod at cue height, showing the shoulder, elbow, hand, and full cue. This angle reveals stroke and posture faults best. If space allows, add a second overhead view for ball positions and line review.",
+     "Keep the camera steady and the whole body in frame. A handheld phone moved between shots makes recordings hard to compare."
+    ]
+   },
+   {
+    "h": "Step 2: Set Up Even Lighting",
+    "p": [
+     "Strong single overhead lights create glare on the cloth and shadows behind the body. Soft, spread light improves both video review and any ball detection. Close curtains that cause uneven patches, and keep the lighting the same across practice sessions so recordings stay comparable."
+    ]
+   },
+   {
+    "h": "Step 3: Record a Baseline",
+    "p": [
+     "Before changing anything, record five to ten normal strokes from the side. Watch them back without judgment and note what stands out: elbow movement, head position, follow-through, or balance. This baseline lets you compare later sessions."
+    ]
+   },
+   {
+    "h": "Step 4: Choose One Focus at a Time",
+    "p": [
+     "Pick a single element to work on, such as a straight backswing or a fuller follow-through. Trying to fix stance, grip, and cue line at once usually leads to confusion. Repeat short drills that isolate that one element."
+    ]
+   },
+   {
+    "h": "Step 5: Use AI Tools for Structure and Review",
+    "p": [
+     "An AI app can help in three ways:",
+     "- Replaying and comparing your baseline with newer recordings.",
+     "- Suggesting a focused drill session based on your level.",
+     "- Tracking make rates and drill completion over time.",
+     "Use the tool as an external view and a record, not as a coach that decides your style."
+    ]
+   },
+   {
+    "h": "Step 6: Log Progress Over Weeks",
+    "p": [
+     "Keep a simple record: date, focus area, drill, and rough outcome. A weekly review shows whether changes hold up over many shots. Improvement in pool is gradual, and short-term recordings can mislead."
+    ]
+   },
+   {
+    "h": "Step 7: Know the Limits",
+    "p": [
+     "Home AI review works best when the setup stays consistent. Moving the camera, changing lights, or practicing on a different table changes the footage and the readings. Detection tools also struggle with clustered balls and occlusion, so review the raw video when a result looks wrong."
+    ]
+   },
+   {
+    "h": "Common Home Practice Mistakes",
+    "p": [
+     "- Hitting loose balls for an hour without a defined drill.",
+     "- Changing setup after one recording instead of testing over several sessions.",
+     "- Expecting the app to feel grip tension or body balance, which it cannot."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "A reliable home practice loop is a fixed camera angle, steady lighting, a recorded baseline, one focused drill at a time, and a weekly progress log. AI tools add structure and an outside view; the actual improvement still comes from repeating stable mechanics on the real table."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Billiards Training Plan Generators: Do They Actually Help?",
+  "intro": "A training plan generator takes your level, available time, and target skill and produces a weekly drill list. For players who arrive at the table without a clear session, this structure can be valuable. But not all generated plans match ho",
+  "sections": [
+   {
+    "h": "What a Practice Plan Should Include",
+    "p": [
+     "Clear focus per session",
+     "Each session should target one area: stance, straight potting, cut shots, positional play, or safety. A plan that mixes every skill in every drill rarely drives focused improvement.",
+     "Repeatable drills",
+     "Drills need a defined setup, target outcome, and repeatable count. Vague prompts like \"practice long shots\" are less useful than a specific cut-shot sequence with a set number of attempts.",
+     "Realistic volume",
+     "The plan should fit your available table time. Overloading drills leads to rushed shots and poor technique.",
+     "Review and progression",
+     "A good generator revisits earlier drills and increases difficulty once basics hold up. It should also record what you completed, not only what you were assigned."
+    ]
+   },
+   {
+    "h": "How AI Generators Typically Work",
+    "p": [
+     "Most combine your self-reported level with a library of standard drills and practice routines. The output is a structured list; the AI does not watch your stroke or know your physical habits. This means the plan can be sound in theory, but it still needs you to execute and adjust."
+    ]
+   },
+   {
+    "h": "Strengths",
+    "p": [
+     "- Ends unstructured, loose-ball sessions.",
+     "- Spreads practice across skills instead of repeating the same comfortable shots.",
+     "- Keeps a record of what was trained over a season."
+    ]
+   },
+   {
+    "h": "Weaknesses",
+    "p": [
+     "- Plans based only on a self-rated level can be too easy or too hard.",
+     "- Generic drills may not match your table size or local rules.",
+     "- No feedback on whether your mechanics actually changed.",
+     "- Some generators hide detailed routines behind a paid tier."
+    ]
+   },
+   {
+    "h": "How to Test a Plan Generator",
+    "p": [
+     "1. Enter your real level and available weekly time honestly.",
+     "2. Run two or three weeks of the generated plan.",
+     "3. Check whether drills are specific, repeatable, and matched to your level.",
+     "4. Note whether you can log outcomes and progress.",
+     "If the routines stay generic after a couple of weeks, look for a tool that lets you customize drills by focus area."
+    ]
+   },
+   {
+    "h": "Combining Plans with Video Review",
+    "p": [
+     "A plan generator works best alongside a separate review tool. The plan decides what to practice; the video or stroke analysis shows whether your execution changed. Using only one leaves you with either structure or feedback, not both."
+    ]
+   },
+   {
+    "h": "Who Benefits Most",
+    "p": [
+     "- Players new to structured practice who need a session template.",
+     "- Amateur competitors preparing for a season with weekly goals.",
+     "- Home players who struggle to choose drills on their own."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "An AI billiards training plan generator helps most when its drills are specific, repeatable, and adjustable to your level and time. Treat the generated routine as a starting point you refine, and pair it with video review so you can see whether your mechanics are improving."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Best Camera for Pool AI Analysis: Phone, Tripod, and Setup Advice",
+  "intro": "The camera and its position often matter more than the analysis software itself. A steady, well-framed shot produces reliable video and ball detection; a shaky, poorly angled recording makes even good software struggle. This guide helps you",
+  "sections": [
+   {
+    "h": "Camera Types",
+    "p": [
+     "Modern smartphone",
+     "A recent phone camera is enough for most personal stroke and posture review. It captures clear side video, fits a tripod, and avoids extra cost. The main limitations are fixed mounting and placement around the table.",
+     "Dedicated action or web camera",
+     "A fixed webcam or action camera works well for an overhead home table where the camera stays mounted between sessions. It gives a consistent angle for repeated comparison and ball tracking.",
+     "Fixed hall camera",
+     "Commercial systems use mounted cameras sized for table coverage, calibration, and reliable lighting. These are usually supplied and installed by the system provider rather than chosen by the individual player."
+    ]
+   },
+   {
+    "h": "Key Specs to Check",
+    "p": [
+     "- Frame rate — for stroke review, 30 frames per second is adequate; higher frame rates help slow-motion delivery analysis.",
+     "- Resolution — 1080p is enough for personal review; higher resolution helps detect smaller ball details in overhead table shots.",
+     "- Field of view — a wide view must still keep balls, body, and cue clear without heavy edge distortion.",
+     "- Low-light performance — halls and home rooms vary in brightness; the camera should hold up under diffuse indoor light."
+    ]
+   },
+   {
+    "h": "Mounting Matters More Than Megapixels",
+    "p": [
+     "A high-resolution phone held in hand will produce worse analysis than a steady lower-resolution camera on a tripod. For side stroke review, a tripod at cue height beside the table is the standard setup. For overhead table vision, a fixed mount centered above the bed gives the most stable geometry.",
+     "Avoid placing the camera so close that the body or cue exits the frame, or so far that the player and balls become small and hard to read."
+    ]
+   },
+   {
+    "h": "Lighting Pairing",
+    "p": [
+     "The camera records what the light reveals. Mixed bright spots, dark pockets, and reflections reduce both review quality and detection. Match the camera to even, diffuse lighting rather than relying on zoom or resolution to fix shadows."
+    ]
+   },
+   {
+    "h": "Angle Recommendations",
+    "p": [
+     "- Side view — shoulder, elbow, wrist, and cue visible along the full stroke.",
+     "- Overhead view — full table bed, balls, and pockets visible for line review and tracking.",
+     "- Rear view — optional, shows head position and alignment over the cue line."
+    ]
+   },
+   {
+    "h": "Common Setup Mistakes",
+    "p": [
+     "- Handheld recording moved between shots, making comparisons unreliable.",
+     "- Camera placed too high or too low, distorting the body or table.",
+     "- Cropping the elbow, bridge hand, or cue tip out of frame.",
+     "- Poor lighting that the camera cannot compensate for."
+    ]
+   },
+   {
+    "h": "Budget-Friendly Choice",
+    "p": [
+     "For most players, a smartphone on an adjustable tripod plus steady indoor lighting is the best starting point. Upgrade to a dedicated fixed camera only if you practice regularly and need a permanent overhead setup for tracking."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "The best camera for pool AI analysis is a steady, well-mounted device that frames the full body and cue from a clear side angle, or the full table from overhead. Prioritize stable mounting, even lighting, and a repeatable angle before paying for higher-spec cameras."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI-Powered Pool Room Equipment: What a Home Setup Actually Needs",
+  "intro": "AI-powered pool room equipment ranges from simple phone tripods to mounted overhead cameras, lighting kits, and tracking software. It is easy to over-buy hardware before a practice habit exists. This guide separates essential gear from opti",
+  "sections": [
+   {
+    "h": "Essential Equipment",
+    "p": [
+     "A steady tripod or mount",
+     "The single most useful purchase is a stable way to hold the phone or camera. A side tripod for stroke review, or an overhead mount for table tracking, prevents the shaky footage that ruins analysis.",
+     "A recording device you already own",
+     "Your current phone usually handles video review well. There is no need to add a dedicated camera until the existing setup proves reliable.",
+     "Basic lighting adjustment",
+     "Even light matters more than expensive fixtures. Closing glare sources, spreading light evenly, and avoiding harsh single bulbs improve both video and detection."
+    ]
+   },
+   {
+    "h": "Optional Equipment",
+    "p": [
+     "Overhead camera mount",
+     "Once you review ball positions and lines regularly, a fixed overhead camera gives consistent table coverage. It pairs with calibration and ball-tracking software.",
+     "Diffused lighting kit",
+     "A soft, spread light setup reduces cloth reflections and shadows. This is most valuable when ball detection is part of the workflow.",
+     "Storage and backup",
+     "Longer recording histories benefit from local storage or a cloud plan. Check how many sessions the free tier keeps before subscribing."
+    ]
+   },
+   {
+    "h": "Software to Match the Hardware",
+    "p": [
+     "Hardware should follow the role you want:",
+     "- Stroke and posture review — side camera plus video comparison software.",
+     "- Ball and line tracking — overhead camera plus detection and review software.",
+     "- Drill and progress tracking — logging app that records outcomes over weeks.",
+     "Buying a camera for tracking before choosing compatible software can lead to mismatched setup."
+    ]
+   },
+   {
+    "h": "What Not to Buy First",
+    "p": [
+     "- Commercial hall scoring systems for personal home use.",
+     "- Multiple cameras before one reliable angle is established.",
+     "- High-end recording gear when the current phone already frames shots clearly."
+    ]
+   },
+   {
+    "h": "A Scaling Path",
+    "p": [
+     "1. Start with phone on a tripod, side angle, manual video review.",
+     "2. Add structured drills and a simple progress log.",
+     "3. Add an overhead camera once ball tracking matters to your practice.",
+     "4. Upgrade lighting and storage only when detection or history becomes the bottleneck."
+    ]
+   },
+   {
+    "h": "Maintenance",
+    "p": [
+     "Keep mounting positions consistent across sessions, clean the lens, and re-check calibration after moving the camera or changing lights. Small setup drift accumulates over time and makes comparisons less reliable."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "A practical AI pool room starts with a stable mount, a phone you already own, and even lighting. Add overhead cameras, dedicated fixtures, and storage only after regular practice and a clear need for tracking. Match each piece of equipment to the analysis task it supports."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Pool Stroke Analyzer App: Free vs Paid, What's the Difference?",
+  "intro": "Pool stroke analyzer apps split into free tools and paid subscriptions. The difference is not always obvious from the app store description. This guide compares what you typically get in each tier, where paid versions add real value, and wh",
+  "sections": [
+   {
+    "h": "What Free Apps Usually Offer",
+    "p": [
+     "- Video recording and playback from the phone camera.",
+     "- Basic replay or frame-by-frame scrubbing.",
+     "- Simple joint or cue markers in some cases.",
+     "- A limited number of saved recordings.",
+     "Free tools suit beginners who want to see their own stroke from the side and spot obvious faults such as a dropped elbow or short follow-through."
+    ]
+   },
+   {
+    "h": "What Paid Apps Usually Add",
+    "p": [
+     "- Side-by-side comparison of two recordings over time.",
+     "- More detailed markers for shoulder, elbow, wrist, and cue.",
+     "- A history log across sessions and skills.",
+     "- Reference strokes or coached-style reports.",
+     "- Cloud storage and export options.",
+     "- Focused drill suggestions linked to the analysis.",
+     "Paid tiers are most useful when you practice regularly and want to track change over weeks rather than watch one session."
+    ]
+   },
+   {
+    "h": "Where Paid Value Is Real",
+    "p": [
+     "The clearest paid benefits are long-term comparison and structured history. A single video replay rarely shows improvement; comparing a baseline recording with a later one does. If the app keeps that history and makes comparison easy, the subscription can justify itself for a committed player."
+    ]
+   },
+   {
+    "h": "Where Paid Upgrades Add Little",
+    "p": [
+     "- A more detailed score number without visible markers behind it.",
+     "- Cosmetic themes or shareable clips that do not improve feedback.",
+     "- Extra camera angles you will not actually set up.",
+     "- Cloud storage you never use after a few recordings."
+    ]
+   },
+   {
+    "h": "How to Decide",
+    "p": [
+     "Start free if:",
+     "- You are new to recorded practice and still checking whether you review footage.",
+     "- You only need side-video replay to spot obvious faults.",
+     "- Your practice sessions are occasional rather than weekly.",
+     "Consider paid if:",
+     "- You record every session and want before/after comparison.",
+     "- You track a specific fault over several weeks.",
+     "- You work with a coach and bring recordings between lessons."
+    ]
+   },
+   {
+    "h": "Check Before Subscribing",
+    "p": [
+     "- Whether the free tier limits saved videos or reports.",
+     "- Whether comparison and history features are locked behind payment.",
+     "- Monthly versus annual billing and cancellation terms.",
+     "- Whether recordings export, in case you leave the app."
+    ]
+   },
+   {
+    "h": "Common Expectation Gap",
+    "p": [
+     "No app tier replaces physical coaching or hands-on adjustment. Paid analysis shows movement and history; it cannot feel grip tension, balance, or cue weight. Treat the subscription as a review and tracking tool."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "A free stroke analyzer is enough to begin recorded practice and spot clear faults. Pay for an app mainly when you need session history, side-by-side comparison, and detailed markers over a long period. Test the free recording and review flow first, then upgrade only if you are reviewing footage consistently."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Overhead Camera Setup for Billiards Vision AI: Mount, Calibration, and Tips",
+  "intro": "An overhead camera is the standard layout for billiards vision AI that reads ball positions and shot lines. Getting the mounting and calibration right determines whether detection works at all. This guide covers a home or coaching-room over",
+  "sections": [
+   {
+    "h": "Why Overhead Works Best",
+    "p": [
+     "A high, centered view keeps the table bed, pockets, and balls in consistent perspective. It minimizes the foreshortening that distorts a side or corner angle, which makes ball-to-pocket geometry easier to measure."
+    ]
+   },
+   {
+    "h": "Mounting Position",
+    "p": [
+     "Height and centering",
+     "Mount the camera high enough to clear the player's stroke and cue, while covering the full table bed. Center it over the middle of the table so cushions and pockets sit evenly in the frame.",
+     "Stability",
+     "The mount must stay fixed between sessions. A camera that shifts after each practice changes perspective and invalidates earlier comparisons.",
+     "Clearance",
+     "Check that the cueing player's body, raised arm, and cue do not regularly block the lens."
+    ]
+   },
+   {
+    "h": "Camera Focus and View",
+    "p": [
+     "- Frame all six pockets and the full bed in view.",
+     "- Avoid extreme wide-angle distortion that stretches ball shapes near the edges.",
+     "- Keep the lens clean and free of cloth dust."
+    ]
+   },
+   {
+    "h": "Calibration",
+    "p": [
+     "Calibration maps the camera image to real table coordinates. Most vision tools ask you to identify pocket positions or table corners before detection starts. Re-run calibration:",
+     "- After moving or tilting the camera.",
+     "- After changing lights or moving the table setup.",
+     "- Whenever ball positions read consistently wrong."
+    ]
+   },
+   {
+    "h": "Lighting for Overhead Detection",
+    "p": [
+     "Even diffuse light reduces bright cloth spots and dark pockets. Strong glare from a single fixture can be mistaken for a ball or hide one behind a reflection. Keep lighting consistent across sessions so detection conditions do not drift."
+    ]
+   },
+   {
+    "h": "Common Detection Problems",
+    "p": [
+     "- Clustered balls — touching balls or balls against cushions partially overlap and are easier to misread.",
+     "- Occlusion — hand, cue, or body crossing the frame blocks detection for a moment.",
+     "- Edge distortion — wide-angle views stretch shapes near the rails.",
+     "- Color confusion — cloth color and reflections can blend with similar ball colors.",
+     "When the software flags an unlikely position, check the raw frame before trusting the line suggestion."
+    ]
+   },
+   {
+    "h": "Testing the Setup",
+    "p": [
+     "Record several normal shots and confirm that all balls are detected and the cue ball is tracked through the shot. Compare recorded finish positions with what you saw on the table. If detection misses regularly, revisit angle, lighting, and calibration before adjusting software settings."
+    ]
+   },
+   {
+    "h": "Scaling Up",
+    "p": [
+     "A single overhead camera suits home practice and coaching review. Commercial halls add multiple tables, scoring, and staff workflows through a supplier installation rather than a DIY mount."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "A reliable overhead vision setup comes from a centered, fixed mount, full-table framing, consistent lighting, and regular calibration. Confirm basic detection over several real shots before relying on line suggestions or tracking history."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Billiards Data Tracking Tools: Which Metrics Matter",
+  "intro": "Data tracking in pool turns scattered practice into a record you can review over time. Not every number an app reports is worth watching. This guide identifies the metrics that reflect real progress, how to log them consistently, and what t",
+  "sections": [
+   {
+    "h": "Metrics Worth Tracking",
+    "p": [
+     "Potting make percentage",
+     "Track make rates for defined situations: straight pots, cut shots at a set angle, long shots, or short shots. Overall \"shots made\" hides whether a skill is actually improving.",
+     "Miss type",
+     "Note why a shot missed: contact error, positional error, or decision error. Recording the fault category helps target drills instead of repeating the same mistake unknowingly.",
+     "Positional outcome",
+     "After a pot, record whether the cue ball finished where needed. Potting without position rarely wins frames, so positional success matters alongside make rate.",
+     "Drill completion",
+     "Log which drills were completed and how many attempts were needed. Consistency over weeks is more useful than one good session.",
+     "Session volume and focus",
+     "Keep date, practice duration, and the single focus area. This shows whether training was regular and balanced over a season."
+    ]
+   },
+   {
+    "h": "What Apps Usually Record",
+    "p": [
+     "- Shot or drill outcomes entered manually or captured from recorded sessions.",
+     "- Progress charts comparing current and earlier sessions.",
+     "- Skill tags, such as potting, position, safety, or break.",
+     "- Historical notes attached to a session.",
+     "Some tracking links to video review, while others are plain logs. The best fit depends on whether you want numbers, recordings, or both."
+    ]
+   },
+   {
+    "h": "Metrics That Are Less Reliable",
+    "p": [
+     "- A single aggregate \"skill score\" that mixes different abilities.",
+     "- Precise percentages based on very few attempts.",
+     "- Comparison against averages without knowing the sample size.",
+     "- Numbers influenced by table conditions you did not control.",
+     "Small samples swing wildly. Base conclusions on dozens of shots per situation, not one session."
+    ]
+   },
+   {
+    "h": "Keeping Records Consistent",
+    "p": [
+     "- Use the same drill definitions and angle categories each time.",
+     "- Log outcomes soon after the session while the result is clear.",
+     "- Separate practice sessions from casual games, since conditions differ.",
+     "- Review the log every few weeks rather than daily."
+    ]
+   },
+   {
+    "h": "How Data Supports Improvement",
+    "p": [
+     "Tracking shows which skills repeat and which still fail. If cut-shot make rate stays flat while straight pots improve, practice can shift to cuts. Records also keep motivation visible when progress feels slow."
+    ]
+   },
+   {
+    "h": "Limits",
+    "p": [
+     "Data cannot describe stroke mechanics, grip tension, or feel. A good number may come from easy conditions, and a poor one from an unfamiliar table. Treat logs as evidence to review alongside video, not as a verdict on your ability."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "Track make rates by defined shot type, miss reasons, positional outcomes, and drill completion over a consistent sample. Choose a tool that records these clearly and lets you review history; ignore vague aggregate scores based on too few attempts."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Pool Training for Beginners: What Helps and What to Skip",
+  "intro": "Beginners often ask whether AI training tools are worth using early on. The honest answer: some features accelerate basic habits, while others add complexity before the fundamentals exist. This guide separates useful beginner tools from fea",
+  "sections": [
+   {
+    "h": "Where AI Tools Help Beginners",
+    "p": [
+     "Outside view of your stance",
+     "Most beginners never see their own setup from the side. A simple recorded video review reveals obvious faults — a leaning body, raised head, or uneven bridge — that are hard to feel in the moment.",
+     "Structured first drills",
+     "A plan generator or drill list gives new players a session goal instead of hitting loose balls. Basic straight pots, alignment, and follow-through benefit from repeated, defined practice.",
+     "Simple progress log",
+     "Recording early sessions shows that basic potting improves over weeks. This keeps motivation up when early results feel uneven."
+    ]
+   },
+   {
+    "h": "What to Skip at the Start",
+    "p": [
+     "Advanced line and projection systems",
+     "Complex table vision and suggested routes are less useful until you can consistently pot basic shots. Early positional decisions come after basic aim and contact.",
+     "Over-detailed scoring",
+     "Fine-grained scores for elbow angle, rhythm, or cue rotation overwhelm a beginner who has not settled a stable setup.",
+     "Paid feature-heavy platforms",
+     "A beginner is usually better served by a free video replay and a simple drill list before any subscription."
+    ]
+   },
+   {
+    "h": "A Beginner Practice Sequence",
+    "p": [
+     "1. Record a few side strokes to see the basic setup.",
+     "2. Focus on one simple habit, such as a still head and a smooth follow-through.",
+     "3. Repeat short straight-potting drills rather than mixing every skill.",
+     "4. Keep a light weekly record of how the session felt and what held up.",
+     "5. Revisit video review after several weeks to compare."
+    ]
+   },
+   {
+    "h": "Common Beginner Mistakes",
+    "p": [
+     "- Switching between fixes every session, so no habit becomes stable.",
+     "- Watching high-level strategy before basic mechanics hold.",
+     "- Judging progress on one good break or one lucky pot.",
+     "- Relying on app feedback without a coach or reference for basic alignment."
+    ]
+   },
+   {
+    "h": "When to Add More Tools",
+    "p": [
+     "Once basic straight pots are reasonably consistent, a beginner can add cut-shot drills, simple positional practice, and a more detailed stroke review. Advanced tracking and commercial systems come later, if at all."
+    ]
+   },
+   {
+    "h": "Coaching Note",
+    "p": [
+     "AI review supplements coaching; it does not replace an early lesson on grip, stance, and bridge. A beginner who can get even one basic coaching session starts from a far clearer reference than video alone."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "For beginners, use AI mainly as a side-angle video view, a drill structure, and a simple progress record. Skip advanced vision systems and heavy paid analytics until basic mechanics are stable. Keep practice focused and repeatable, and let early habits settle before adding layers of data."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Commercial Billiards AI Scoring Systems: How They Fit a Busy Hall",
+  "intro": "Commercial billiards AI scoring systems use table cameras and software to track shots and update scores automatically. They are designed for venues with multiple tables, leagues, or member play, rather than personal home practice. This guid",
+  "sections": [
+   {
+    "h": "What Auto-Scoring Does",
+    "p": [
+     "A camera above each table detects balls and follows them through a shot. The software identifies potted balls, updates the rack or frame score, and may record the outcome for later review. Some systems also capture highlights and connect to booking or membership records."
+    ]
+   },
+   {
+    "h": "Problems Manual Scoring Creates",
+    "p": [
+     "- Disputes over who potted a ball or what the score is.",
+     "- Staff time spent walking between tables to keep score.",
+     "- Inconsistent records for league and member play.",
+     "- No easy footage to review a disputed call.",
+     "A scoring system addresses these when detection is reliable and staff can use the interface."
+    ]
+   },
+   {
+    "h": "Core Components",
+    "p": [
+     "Table camera",
+     "Mounted above each table, sized to cover the full bed and pockets.",
+     "Detection software",
+     "Reads ball positions, tracks movement, and updates scoring rules for the game being played.",
+     "Back-end dashboard",
+     "Shows table status, scores, occupancy, and often member or session records.",
+     "Optional highlight capture",
+     "Records completed racks or good shots for review or sharing."
+    ]
+   },
+   {
+    "h": "Evaluation Questions for Suppliers",
+    "p": [
+     "1. Which game rules does the scoring support?",
+     "2. What happens on a missed detection — can staff correct a score manually?",
+     "3. Is pricing per table, and are cameras and installation included?",
+     "4. What are ongoing software, cloud, or storage fees?",
+     "5. How are cameras calibrated, and who adjusts them after installation?",
+     "6. How does the system handle crowds, moving players, and mixed lighting?",
+     "7. Can scores and video be exported if the venue changes providers?"
+    ]
+   },
+   {
+    "h": "Detection Realities in a Hall",
+    "p": [
+     "Busy venues are harder than a clean coaching room. Neighboring players, shadows, clustered balls, and varied lighting all affect detection. A system that works in a quiet showroom may miss shots under normal hall conditions, which is why a live pilot matters."
+    ]
+   },
+   {
+    "h": "Staff Adoption",
+    "p": [
+     "The most capable system fails if staff avoid it. The interface should let a host or player correct scores simply, and training should be part of installation. Venues should plan how disputes are reviewed when detection is uncertain."
+    ]
+   },
+   {
+    "h": "Privacy Considerations",
+    "p": [
+     "Cameras in a public venue record players. Post clear signage and follow local rules on camera recording and personal data. Confirm where video is stored and how long it is kept."
+    ]
+   },
+   {
+    "h": "Pilot on One Table",
+    "p": [
+     "Run the system on a single table through busy hours, different lighting, and several player types before buying for the whole hall. Track missed detections, correction time, and staff feedback."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "A commercial AI scoring system can reduce manual scorekeeping and disputes in a serious pool hall, but its value depends on reliable detection, easy correction, and staff adoption. Compare per-table cost, ongoing fees, calibration support, and privacy setup, and validate with a real single-table pilot before full rollout."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Affordable AI Pool Training Tools: Low-Cost Ways to Start Reviewing Your Game",
+  "intro": "You do not need expensive cameras or a paid subscription to begin AI-assisted pool practice. Many useful review and tracking tasks run on a phone, a tripod, and low-cost or free software. This guide outlines a budget-first setup and where s",
+  "sections": [
+   {
+    "h": "What You Already Own",
+    "p": [
+     "Smartphone camera",
+     "A recent phone records enough detail for side stroke review and basic video comparison. Use the rear camera, steady focus, and even indoor light.",
+     "Free or low-cost review apps",
+     "Many analyzer apps offer free recording, frame-by-frame playback, and basic markers. Start here before evaluating any paid plan.",
+     "A notes or spreadsheet log",
+     "For drill outcomes and progress, a plain note app or sheet works before any dedicated tracking software."
+    ]
+   },
+   {
+    "h": "Budget Hardware Additions",
+    "p": [
+     "Tripod or phone mount",
+     "An adjustable tripod beside the table is the cheapest high-value purchase. It replaces shaky handheld footage that makes review unreliable.",
+     "Clip or mount light",
+     "If the room has harsh shadows, an affordable diffuse light helps both video and later detection. Avoid strong spotlight reflections on the cloth.",
+     "Simple overhead holder",
+     "Once side review feels routine, a low-cost overhead mount lets you record ball positions without buying a dedicated camera."
+    ]
+   },
+   {
+    "h": "Low-Cost Practice Workflow",
+    "p": [
+     "1. Set the phone on a tripod at cue height, side view.",
+     "2. Record a baseline set of strokes.",
+     "3. Watch playback and note one clear fault.",
+     "4. Repeat a focused drill for the session.",
+     "5. Log the focus and rough outcome in a simple record.",
+     "6. Compare a later recording with the baseline."
+    ]
+   },
+   {
+    "h": "Where Spending Can Wait",
+    "p": [
+     "- Dedicated overhead cameras until tracking ball positions matters to you.",
+     "- Paid subscriptions until you review footage weekly and need history or comparison features.",
+     "- High-end lighting or multi-camera setups until one reliable angle is established.",
+     "- Commercial scoring or projection systems, which are venue products rather than beginner tools."
+    ]
+   },
+   {
+    "h": "Stretching a Small Budget",
+    "p": [
+     "- Use free tiers to learn which features you actually use.",
+     "- Keep one consistent filming setup so comparisons stay valid.",
+     "- Prioritize mounting and lighting over software extras.",
+     "- Borrow or test an app on a few sessions before paying."
+    ]
+   },
+   {
+    "h": "Signs You Are Ready to Upgrade",
+    "p": [
+     "- You record most practice sessions and want saved history.",
+     "- Side comparison alone is no longer enough; you want ball or line review.",
+     "- A free app limits recordings, comparison, or export in a way that blocks real progress.",
+     "- You practice weekly over several months rather than occasionally."
+    ]
+   },
+   {
+    "h": "Avoiding Waste",
+    "p": [
+     "The biggest wasted spend is equipment bought before a regular practice habit exists. A stable phone and tripod beat unused high-end gear. Upgrade one part at a time, tied to a specific limitation you have actually hit."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "Affordable AI pool training starts with your phone, a steady tripod, even light, and free review software. Log drills in a simple record and compare recordings over time. Add cameras, lighting, or subscriptions only after consistent practice shows a clear need for them."
+    ]
+   }
+  ]
+ }
+];
+
+let activeCat = "all";
+let activeTag = "all";
+let keyword = "";
+
+const catList = document.getElementById("categoryList");
+const tagList = document.getElementById("tagList");
+const grid = document.getElementById("cardGrid");
+const rankList = document.getElementById("rankList");
+
+// 分类按钮
+function renderCategories(){
+  const all = [{id:"all",name:"全部工具"}, ...CATEGORIES];
+  catList.innerHTML = all.map(c =>
+    `<button data-cat="${c.id}" class="${activeCat===c.id?"active":""}">${c.name}</button>`
+  ).join("");
+}
+
+// 标签按钮（去重）
+function renderTags(){
+  const tags = [...new Set(TOOLS.flatMap(t=>t.tags))];
+  tagList.innerHTML = `<button data-tag="all" class="${activeTag==="all"?"active":""}">全部标签</button>` +
+    tags.map(t => `<button data-tag="${t}" class="${activeTag===t?"active":""}">${t}</button>`).join("");
+}
+
+function matchTool(t){
+  const okCat = activeCat==="all" || t.cat===activeCat;
+  const okTag = activeTag==="all" || t.tags.includes(activeTag);
+  const kw = keyword.trim().toLowerCase();
+  const okKw = !kw || t.title.toLowerCase().includes(kw) || t.desc.toLowerCase().includes(kw);
+  return okCat && okTag && okKw;
+}
+
+function renderCards(){
+  const list = TOOLS.filter(matchTool);
+  if(!list.length){
+    grid.innerHTML = `<div class="empty">没有匹配的工具，换个关键词或筛选条件试试。</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(t => `
+    <article class="card">
+      <div class="card-head">
+        <div class="card-title">${t.title}</div>
+      </div>
+      <p class="card-desc">${t.desc}</p>
+      <div class="card-tags">
+        ${t.hot?'<span class="chip hot">热门</span>':""}
+        ${t.tags.map(tag=>{
+          const cls = tag==="国内可用"?"chip cn":"chip";
+          return `<span class="${cls}">${tag}</span>`;
+        }).join("")}
+      </div>
+      ${t.link?`<a class="card-link" href="${t.link}" target="_blank" rel="noopener nofollow">访问官网 / 了解更多 →</a>`:`<span class="card-link" style="color:var(--text-dim)">通用配件 · 按需选购</span>`}
+    </article>
+  `).join("");
+}
+
+// 排行榜：热门优先，再按 id
+function renderRank(){
+  const ranked = [...TOOLS].sort((a,b)=> (b.hot?1:0)-(a.hot?1:0) || a.id-b.id).slice(0,6);
+  rankList.innerHTML = ranked.map(t=>`<li>${t.title}</li>`).join("");
+}
+
+// 事件绑定
+catList.addEventListener("click", e=>{
+  const btn = e.target.closest("button"); if(!btn) return;
+  activeCat = btn.dataset.cat; renderCategories(); renderCards();
+});
+tagList.addEventListener("click", e=>{
+  const btn = e.target.closest("button"); if(!btn) return;
+  activeTag = btn.dataset.tag; renderTags(); renderCards();
+});
+document.getElementById("searchInput").addEventListener("input", e=>{
+  keyword = e.target.value; renderCards();
+});
+
+
+// ===== 文章列表与详情 =====
+const articleList=document.getElementById("articleList");
+const articleDetail=document.getElementById("articleDetail");
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+function renderArticleList(){
+  articleList.innerHTML = ARTICLES.map((a,i)=>`
+    <article class="article-item" id="article-${i}" data-index="${i}">
+      <h3>${esc(a.title)}</h3>
+      <p>${esc(a.intro)}</p>
+      <span class="read">阅读全文 →</span>
+    </article>`).join("");
+}
+
+function renderArticle(i){
+  const a=ARTICLES[i];
+  document.title = a.title + " | Real Billiards AI Tools";
+  let body="";
+  a.sections.forEach(sec=>{
+    if(sec.h && sec.h.toLowerCase()!=="introduction"){
+      body+=`<h4>${esc(sec.h)}</h4>`;
+    }
+    sec.p.forEach(p=>{
+      if(/^\d+\.\s/.test(p) || p.startsWith("- ")){
+        const item=p.replace(/^\d+\.\s*/,"").replace(/^-\s*/,"");
+        body+=`<p>· ${esc(item)}</p>`;
+      }else{
+        body+=`<p>${esc(p)}</p>`;
+      }
+    });
+  });
+  articleDetail.innerHTML=`
+    <span class="back" id="backToList">← 返回文章列表</span>
+    <h2>${esc(a.title)}</h2>
+    <p class="lead">${esc(a.intro)}</p>
+    ${body}`;
+  document.getElementById("backToList").addEventListener("click",()=>showPage("articles"));
+}
+
+articleList.addEventListener("click",e=>{
+  const item=e.target.closest(".article-item"); if(!item) return;
+  renderArticle(Number(item.dataset.index));
+  showPage("article-detail");
+});
+
+// 顶部页面切换（关于 / 隐私 / 联系）
+function showPage(target){
+  document.querySelectorAll(".page-section").forEach(s=>s.classList.remove("active"));
+  document.getElementById("page-"+target).classList.add("active");
+  if(target!=="article-detail"){
+    document.title = "实体台球 AI 训练工具导航 | Real Billiards AI Tools";
+  }
+  window.scrollTo({top:0});
+}
+document.querySelectorAll("[data-page]").forEach(a=>{
+  a.addEventListener("click", e=>{
+    e.preventDefault();
+    showPage(a.dataset.page);
+  });
+});
+
+renderCategories();
+renderTags();
+renderCards();
+renderRank();
+renderArticleList();
+</script>
+</body>
+</html>
