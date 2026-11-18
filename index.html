@@ -304,26 +304,26 @@ const CATEGORIES = [
 
 const TOOLS = [
   // 动作 / 站姿分析
-  { id:1,  cat:"posture", title:"PerformStars", desc:"基于真实球桌视频的计算机视觉分析，自动识别击球、球位与轨迹，生成逐杆技术报告与训练建议。", tags:["海外","付费","APP"], hot:true,  link:"https://performstars.com/" },
-  { id:2,  cat:"posture", title:"涨球儿", desc:"国内台球训练应用，可上传击球视频获得教练指导与教学内容，面向台球爱好者的线上练习平台。", tags:["国内可用","免费+付费","APP"], hot:false, link:"https://www.buole.com/app" },
-  { id:3,  cat:"posture", title:"QMD4 Stroke Analyzer", desc:"安装在球杆上的蓝牙传感配件，配合手机 App 记录出杆速度、杆头轨迹与肘部变化，输出动作曲线图。", tags:["海外","硬件+APP"], hot:false, link:"https://www.theqmd.com/" },
+  { id:1,  cat:"posture", title:"PerformStars", desc:"面向真实球桌的计算机视觉动作分析：用视频识别站姿、握杆与出杆轨迹，生成逐杆技术报告和线下训练建议，适合复盘站姿与送杆动作。", tags:["海外","付费","APP"], hot:true,  link:"https://performstars.com/" },
+  { id:2,  cat:"posture", title:"涨球儿", desc:"国内可用的台球线上训练应用：上传真实击球视频获取教练点评与教学内容，适合爱好者在球房或居家练球后做动作复盘。", tags:["国内可用","免费+付费","APP"], hot:false, link:"https://www.buole.com/app" },
+  { id:3,  cat:"posture", title:"QMD4 Stroke Analyzer", desc:"绑在球杆上的蓝牙传感配件，配合手机 App 记录出杆速度、杆头轨迹与肘部变化并输出动作曲线，用于线下出杆稳定性训练。", tags:["海外","硬件+APP"], hot:false, link:"https://www.theqmd.com/" },
 
   // 台面视觉瞄准
-  { id:4,  cat:"table", title:"Railbird", desc:"AI 镜头跟踪真实球桌，记录每一杆并统计进球率、连续进球等数据，用于训练复盘与走位分析。", tags:["海外","免费+付费","APP"], hot:true, link:"https://railbird.ai/" },
-  { id:5,  cat:"table", title:"CuePro", desc:"支持拍摄真实球桌读取球位，提供选球、瞄准线路与母球走位规划参考，附慢动作视频复盘功能。", tags:["海外","免费+付费","APP"], hot:false, link:"https://apps.apple.com/ge/app/cuepro-pool-shot-advisor/id6787765324" },
+  { id:4,  cat:"table", title:"Railbird", desc:"AI 镜头跟踪真实球桌，逐杆记录进球率与连续进球等数据，用于线下训练复盘、走位回顾和长期进步统计。", tags:["海外","免费+付费","APP"], hot:true, link:"https://railbird.ai/" },
+  { id:5,  cat:"table", title:"CuePro", desc:"拍摄真实球桌读取球位，提供选球、瞄准线路与母球走位规划参考，附慢动作视频复盘，适合线下击球前的线路判断练习。", tags:["海外","免费+付费","APP"], hot:false, link:"https://apps.apple.com/ge/app/cuepro-pool-shot-advisor/id6787765324" },
 
   // 训练计划 & 数据记录
-  { id:6,  cat:"training", title:"DrillRoom", desc:"AI 台球教练应用，含 80+ 训练 drills、杆数统计、速度控制与线路图编辑，跟踪每次练习的进步数据。", tags:["海外","免费+付费","APP"], hot:true, link:"https://drillroom.ai/" },
-  { id:7,  cat:"training", title:"RackUp", desc:"台球比赛计分与评分应用，覆盖 8/9/10 球等赛制，自动记录局分、回合与防守，生成比赛战绩与水平评级。", tags:["海外","免费+付费","APP"], hot:false, link:"https://rackuppool.com/" },
+  { id:6,  cat:"training", title:"DrillRoom", desc:"AI 台球训练教练应用，含 80+ 实战练习、杆数统计、速度控制与线路图编辑，跟踪每次线下练习的完成情况和进步数据。", tags:["海外","免费+付费","APP"], hot:true, link:"https://drillroom.ai/" },
+  { id:7,  cat:"training", title:"RackUp", desc:"台球比赛计分与水平记录应用，覆盖 8/9/10 球等赛制，自动记录局分、回合与防守，生成线下对战争战绩与水平参考。", tags:["海外","免费+付费","APP"], hot:false, link:"https://rackuppool.com/" },
 
   // 球房商用 AI 系统
-  { id:8,  cat:"venue", title:"Supervisions 智能计分系统", desc:"基于机器视觉与 AI 的商用智能斯诺克/台球计分系统，实现自动计分、犯规判别、数据统计，服务俱乐部与赛事。", tags:["国内可用","商用设备"], hot:true, link:"https://supervisions.cn/" },
-  { id:9,  cat:"venue", title:"RackReel", desc:"AI 自动识别击球片段，把练习或比赛录像剪辑成精彩集锦，可筛选单杆生成复盘或分享视频。", tags:["海外","付费","SaaS"], hot:false, link:"https://rackreel.app/" },
+  { id:8,  cat:"venue", title:"Supervisions 智能计分系统", desc:"基于机器视觉与 AI 的商用台球计分系统，自动计分、判别犯规并统计数据，面向实体俱乐部、球房与线下赛事场景。", tags:["国内可用","商用设备"], hot:true, link:"https://supervisions.cn/" },
+  { id:9,  cat:"venue", title:"RackReel", desc:"AI 自动识别击球片段，把线下练习或比赛录像剪辑成精彩集锦，可按单杆生成复盘或分享视频，适合球房与教练内容整理。", tags:["海外","付费","SaaS"], hot:false, link:"https://rackreel.app/" },
 
   // 硬件配件
-  { id:10, cat:"hardware", title:"球杆动作传感配件（QMD4 类）", desc:"绑在球杆后把上的蓝牙传感器，采集三维出杆数据并同步手机 App，属于动作训练类硬件，需配合对应软件使用。", tags:["海外","硬件"], hot:false, link:"https://www.theqmd.com/" },
-  { id:11, cat:"hardware", title:"高位俯拍摄像头支架", desc:"用于固定手机或摄像头的桌面上方支架，提供稳定俯拍机位，减少手持晃动与透视变形，是台面视觉识别的基础配件。", tags:["通用","硬件"], hot:false, link:"" },
-  { id:12, cat:"hardware", title:"台面补光方案", desc:"均匀照亮台呢、减少顶灯反光与局部阴影的灯光配置，可提升视频复盘与球位识别的稳定性，需按球桌尺寸选配。", tags:["通用","硬件"], hot:false, link:"" }
+  { id:10, cat:"hardware", title:"球杆动作传感配件（QMD4 类）", desc:"绑在球杆后把上的蓝牙传感器，采集三维出杆数据并同步手机 App，属于线下动作训练类硬件，需配合对应软件使用。", tags:["海外","硬件"], hot:false, link:"https://www.theqmd.com/" },
+  { id:11, cat:"hardware", title:"高位俯拍摄像头支架", desc:"固定手机或摄像头的桌面上方支架，提供稳定俯拍机位，减少手持晃动与透视变形，是线下台面视觉识别和视频复盘的基础配件。", tags:["通用","硬件"], hot:false, link:"" },
+  { id:12, cat:"hardware", title:"台面补光方案", desc:"均匀照亮台呢、减少顶灯反光与局部阴影的灯光配置，可提升线下视频复盘与球位识别的稳定性，需按球桌尺寸选配。", tags:["通用","硬件"], hot:false, link:"" }
 ];
 
 const ARTICLES = [
@@ -1356,6 +1356,139 @@ const ARTICLES = [
     "h": "Conclusion",
     "p": [
      "Affordable AI pool training starts with your phone, a steady tripod, even light, and free review software. Log drills in a simple record and compare recordings over time. Add cameras, lighting, or subscriptions only after consistent practice shows a clear need for them."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Pool Review Workflow: How to Record Real Shots and Actually Improve",
+  "intro": "Recording shots with a phone or fixed camera only helps when the footage is reviewed in a repeatable way. This guide outlines a practical AI-assisted practice workflow for a real pool table, from setting the camera and recording baseline strokes to comparing later sessions and turning feedback into focused drills.",
+  "sections": [
+   {
+    "h": "Why a Workflow Matters",
+    "p": [
+     "Many players record a few videos but never act on them. Without a fixed setup and a review routine, footage is hard to compare and faults stay hidden between visits to the table. A repeatable workflow turns practice into a record you can inspect over weeks.",
+     "The goal is not to chase a score from an app. It is to capture your real stance, stroke, and shot selection clearly enough that one change can be isolated, practiced, and checked again later."
+    ]
+   },
+   {
+    "h": "1. Set Up a Consistent Camera",
+    "p": [
+     "Side view for mechanics",
+     "A side-on tripod at cue height shows the shoulder, elbow, wrist, bridge, and cue line. This angle is the most useful for spotting a dropping elbow, off-line stroke, or rising head.",
+     "Overhead view for ball positions",
+     "An overhead or high-angle mount records where balls settle and how the cue ball travels. Add this second angle only after the side review feels routine.",
+     "Keep the setup the same",
+     "Reuse the same spot, height, and lighting across sessions. If every recording is framed differently, comparisons between sessions become unreliable."
+    ]
+   },
+   {
+    "h": "2. Record a Baseline Session",
+    "p": [
+     "Before changing anything, film a normal practice set. Include a few deliberate shots you feel comfortable with and a few you find difficult. This baseline becomes the reference you compare later recordings against.",
+     "Keep notes for each clip: the drill, the target ball, and whether the shot felt stable. App logs and a plain written note together give context the footage alone cannot show."
+    ]
+   },
+   {
+    "h": "3. Review Footage With the AI Tool",
+    "p": [
+     "1. Watch the full clip once without judging.",
+     "2. Replay the address and backswing in slow motion, checking shoulder line and bridge hand.",
+     "3. Mark the delivery: cue path, elbow movement, and follow-through.",
+     "4. Note one clear, observable fault rather than a list of vague impressions.",
+     "Treat AI markers as evidence to inspect, not as a final verdict. If a marker disagrees with what you feel on the shot, trust the recording and review the frame again."
+    ]
+   },
+   {
+    "h": "4. Turn Feedback Into One Focused Drill",
+    "p": [
+     "Choose a single element to improve, such as a steady elbow or a level cue. Plan a short drill that isolates it, then repeat that drill for part of the next session rather than playing random racks.",
+     "Keep the drill simple and repeatable. A focused, low-pressure drill done consistently teaches the new habit more reliably than many varied shots watched back later."
+    ]
+   },
+   {
+    "h": "5. Compare a Later Recording",
+    "p": [
+     "After two or three sessions, record again with the same camera and lighting. Compare the new clip to the baseline side by side. Look for whether the one targeted element changed, and whether any other part of the movement shifted as a side effect.",
+     "If the change did not hold, the filming angle or the drill may be the problem before it is a question of ability. Fix the setup first, then reassess."
+    ]
+   },
+   {
+    "h": "Common Review Mistakes",
+    "p": [
+     "- Filming from a single awkward angle that hides the stroke.",
+     "- Reviewing too many faults at once and leaving the table unsure what to practice.",
+     "- Comparing clips taken under different lighting or framing.",
+     "- Treating an app score as proof of improvement without checking the actual movement.",
+     "- Stopping review after one session instead of building a longer record."
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "A useful AI pool review workflow is a steady camera, a recorded baseline, a focused review of one observable fault, a matching drill, and a later comparison. The tool supplies the frame-by-frame evidence; your improvement comes from repeating the change until it feels automatic."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "How to Choose a Billiards AI Tool: A Decision Checklist for Real Table Practice",
+  "intro": "Billiards AI tools cover posture analysis, table vision, drill planning, scoring, and venue systems, and the right choice depends on your level, filming setup, and whether you practice alone or run a hall. This checklist helps you match a tool to a real need before paying for a subscription or hardware.",
+  "sections": [
+   {
+    "h": "Start With Your Main Gap",
+    "p": [
+     "Begin by deciding what problem you actually want to solve. Are you unsure whether your stance and stroke look right, do you want to review ball positions and cue ball paths, do you need a structured practice plan, or are you running a venue that needs automatic scoring?",
+     "Tools are usually strongest in one of these roles. Picking an app for a gap it does not address wastes time and subscription money, no matter how polished the marketing looks."
+    ]
+   },
+   {
+    "h": "Check What the Tool Records",
+    "p": [
+     "Camera angles it supports",
+     "Confirm whether the app works with a side view, an overhead mount, or both. A tool designed for overhead ball tracking will not analyze your shoulder and elbow, and vice versa.",
+     "Detection conditions",
+     "Real-table analysis depends on even lighting, a steady camera, and a clear view of the cloth. Read the product description for stated requirements rather than assuming it works in any hall.",
+     "Data it keeps",
+     "Check whether recordings and history stay on the device or upload to a cloud account, and whether you can export clips for comparison over time."
+    ]
+   },
+   {
+    "h": "Match the Tool to Your Level",
+    "p": [
+     "Beginners usually benefit most from simple video replay and basic posture feedback. Advanced scoring, detailed metrics, or venue features add complexity before the fundamentals exist.",
+     "Coached players can use recordings to prepare for sessions with a real instructor. Competitors may want history and before/after comparison across a season. Match the feature set to how often and how seriously you practice."
+    ]
+   },
+   {
+    "h": "Free, Paid, and Hardware Options",
+    "p": [
+     "- Free tiers: recording, playback, and basic markers; suitable for testing whether review fits your routine.",
+     "- Paid subscriptions: longer history, comparison overlays, coached-style reports, and more drills; worthwhile once you review weekly.",
+     "- Sensors and mounts: hardware that measures the cue or holds the camera; buy it only after a software workflow shows a specific gap it would fill."
+    ]
+   },
+   {
+    "h": "Venue Tools Are a Separate Decision",
+    "p": [
+     "Automatic scoring, foul detection, and member footage systems are built for halls with multiple tables and leagues. They involve installation, lighting, and staff training, and are not personal practice products.",
+     "If you are evaluating a venue system, ask about installation requirements, ongoing maintenance, and how the recorded data is used by members and staff."
+    ]
+   },
+   {
+    "h": "Questions to Ask Before You Buy",
+    "p": [
+     "1. Which part of my game does this tool actually analyze?",
+     "2. Does it work with the camera angle and lighting I can realistically set up?",
+     "3. Can I compare a later recording with an earlier one?",
+     "4. What does the free tier include, and what specifically unlocks in the paid plan?",
+     "5. Are there real users or documented results for the table conditions I play on?"
+    ]
+   },
+   {
+    "h": "Conclusion",
+    "p": [
+     "Choose a billiards AI tool by matching its recording angle, analysis focus, and data features to your real gap and practice level. Test a free tier first, fix your camera and lighting, and upgrade to paid plans or hardware only after you have reviewed footage regularly and hit a concrete limitation."
     ]
    }
   ]
