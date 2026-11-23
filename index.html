@@ -258,6 +258,20 @@
     .chip,button{min-height:34px}
     .back{display:inline-block;padding:10px 0;font-size:15px}
   }
+
+  /* ===== 首页最新教程区块 ===== */
+  .latest-block{margin:40px 0 8px}
+  .latest-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .latest-head h2{font-size:1.05rem;margin:0;color:var(--text)}
+  .latest-more{color:var(--accent);font-size:.86rem;text-decoration:none;cursor:pointer}
+  .latest-more:hover{text-decoration:underline}
+  .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .latest-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:14px;cursor:pointer;transition:border-color .18s,transform .18s}
+  .latest-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .latest-card h3{font-size:.92rem;line-height:1.45;margin:0 0 8px;color:var(--text);font-weight:600}
+  .latest-card p{font-size:.8rem;color:var(--text-dim);line-height:1.6;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  @media (max-width:900px){.latest-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.latest-grid{grid-template-columns:1fr}.latest-card{padding:12px}.latest-head h2{font-size:1rem}}
 </style>
 </head>
 <body>
@@ -329,6 +343,14 @@
         <div class="ad-side">【右侧竖版广告位 2 · AdSense 预留】</div>
       </aside>
     </div>
+
+    <section class="latest-block" aria-labelledby="latestTitle">
+      <div class="latest-head">
+        <h2 id="latestTitle">最新教程（英文长文）</h2>
+        <a class="latest-more" data-page="articles" href="#articles">查看全部教程 →</a>
+      </div>
+      <div class="latest-grid" id="latestGrid"></div>
+    </section>
   </section>
 
   <!-- ===== 文章列表 ===== -->
@@ -1683,6 +1705,357 @@ const ARTICLES = [
     ]
    }
   ]
+ },
+ {
+  "title": "Pool Aiming Line Apps on a Real Table: What They Can and Cannot Do",
+  "intro": "Aiming-line apps that work on a physical table are the most misunderstood tools in the category. They can show a line across real balls, which is genuinely useful, but a line is not a shot. This guide separates what the software actually computes from what only your stroke can deliver.",
+  "sections": [
+   {
+    "h": "What the App Actually Computes",
+    "p": [
+     "The core job is geometry. Given the cue ball, the object ball and the pocket, the required contact point and cue-ball path are solvable with school-level trigonometry. A camera reads ball positions, the app solves the triangle, and an overlay draws the result on the live image.",
+     "Everything beyond that triangle is inference, not measurement. Cloth speed, cue-ball spin, cushion rebound, humidity and the condition of the tip are not visible to the camera, so any prediction involving them is a model rather than an observation."
+    ]
+   },
+   {
+    "h": "Where the Line Genuinely Helps",
+    "p": [
+     "For players who consistently under-cut or over-cut, the line is a calibration device. Your own read and the computed line disagree by a visible margin, and after enough repetitions you learn the size and direction of your personal error. That correction transfers to shots where no app is running.",
+     "It also helps with thin cuts and long pots, where the contact point is hard to see at table level. A clear overlay removes a genuine perceptual problem rather than a skill problem."
+    ]
+   },
+   {
+    "h": "Where It Can Mislead You",
+    "p": [
+     "The most common failure is trusting the line while ignoring delivery. A perfectly computed aiming line executed with a rising elbow, a tight grip or an off-centre hit produces a miss, and the app cannot tell you which link in the chain failed.",
+     "The second failure is calibration drift. A camera that is bumped, a table that is moved, or lighting that changes between sessions shifts every ball position slightly, and a two-centimetre error at the object ball becomes a large error at the pocket."
+    ]
+   },
+   {
+    "h": "Realistic Use in Practice",
+    "p": [
+     "Use the app as a periodic check, not a permanent crutch. Ten minutes of line comparison at the start of a session, then put the phone down and play. If you find yourself needing the overlay on every shot, the tool has replaced your reading skill instead of training it.",
+     "Keep the setup identical between sessions: same mount, same lighting, same table cloth direction. Consistency of measurement matters more than the sophistication of the algorithm."
+    ]
+   },
+   {
+    "h": "The Honest Verdict",
+    "p": [
+     "Aiming-line apps are the strongest visual teaching aid available to a real-table player, and the weakest substitute for practice. They answer the question \"was my read correct\" and refuse to answer \"why did I miss\".",
+     "Players who improve with them are the ones who treat the line as feedback rather than instruction. Players who plateau are the ones who wait for the green line before every shot and never build their own read."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "What an AI Pool Setup Actually Costs: A Full Breakdown",
+  "intro": "Most guides quote a subscription price and stop there, which is why so many players are surprised by what the total comes to. This breakdown walks through the four cost layers of a real-table AI setup - software, hardware, environment and time - with rough ranges rather than single numbers.",
+  "sections": [
+   {
+    "h": "Layer One: Software Subscriptions",
+    "p": [
+     "Nearly every tool in this category follows the same structure: a free tier that is limited in session length or features, and one or two paid tiers that unlock full statistics, longer recordings or advanced drills. The practical question is not the monthly fee but whether you will actually review footage often enough to justify it.",
+     "A reasonable approach is to run the free tier for a month with a fixed camera and count how many sessions you review. If the answer is fewer than about four, a subscription is money spent on intent rather than practice."
+    ]
+   },
+   {
+    "h": "Layer Two: Camera and Mount",
+    "p": [
+     "This is the layer players underestimate. A phone on a tripod pointed at the table produces usable results only if the whole table rectangle stays in frame, the mount does not drift, and the light is even. A clamp arm or overhead boom that holds position reliably typically costs more than the app itself.",
+     "The cheap substitutes - a stack of books, a chair back, a cushion - work for one session and fail by the third, because a few millimetres of movement invalidates the calibration."
+    ]
+   },
+   {
+    "h": "Layer Three: The Room",
+    "p": [
+     "Lighting is the hidden cost. Detection relies on separating balls from cloth and from each other, and a room with a bright window and a dark corner produces glare and shadow that break tracking. A pair of diffused panels or even repositioning the table away from direct sunlight can cost little or a lot depending on what you already own.",
+     "If you rent table time rather than owning a table, this layer changes shape entirely: you need a setup that can be carried in and calibrated in five minutes, which pushes you toward clamp mounts and a phone rather than fixed cameras."
+    ]
+   },
+   {
+    "h": "Layer Four: Time, the Most Expensive Part",
+    "p": [
+     "Recording is free; reviewing is not. A session that generates forty minutes of footage and statistics needs a deliberate review habit, and the players who get value are those who block out fifteen minutes after practice rather than promising themselves they will look later.",
+     "Add the setup and calibration time at the start of each session, and the real cost of the tool is closer to the cost of a weekly lesson in attention, though not in money."
+    ]
+   },
+   {
+    "h": "A Sensible Spending Order",
+    "p": [
+     "1. Free software tier plus whatever mount you already own. Prove you will review footage.",
+     "2. A stable mount, bought before any subscription. Calibration quality decides whether the statistics are real.",
+     "3. Lighting, if detection is visibly unstable indoors.",
+     "4. Paid subscription, only after the free tier is genuinely limiting you.",
+     "5. Hardware add-ons or sensor accessories last. They improve resolution of a problem you have already identified, not a problem you have not."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Installing Cameras in a Pool Hall for AI Scoring: A Practical Guide",
+  "intro": "Commercial scoring and shot-tracking in a pool hall is a different problem from a single-player setup. You are dealing with multiple tables, moving customers, changing light, and a system that has to work without anyone calibrating it. This guide covers the decisions that actually determine whether it works.",
+  "sections": [
+   {
+    "h": "Start with One Table, Not the Room",
+    "p": [
+     "The instinct is to plan a hall-wide deployment. The safer sequence is to instrument one table completely, run it for two weeks, and measure how often the tracking drops or misreads. A single table teaches you the failure modes of your specific room cheaply.",
+     "Only after one table is stable should you replicate the layout, because replication multiplies whatever error you have not yet fixed."
+    ]
+   },
+   {
+    "h": "Camera Position Is the Whole Game",
+    "p": [
+     "An overhead view gives clean ball separation and reliable geometry but requires a mount above the table that customers cannot bump and staff can reach for maintenance. A side view is easier to install but suffers from balls occluding each other and from cue and hand interference.",
+     "In practice, overhead wins for scoring accuracy and loses on installation cost and aesthetics. Decide which constraint you can live with before ordering hardware, because the two designs need different lenses and different calibration routines."
+    ]
+   },
+   {
+    "h": "Lighting and Cloth",
+    "p": [
+     "Pool halls are lit for players, not for cameras: bright spots over the table, dark edges, and coloured cloth that matches the ball colours in the worst cases. Detection models trained on standard conditions degrade quietly rather than fail loudly, producing plausible but wrong ball positions.",
+     "Test with the actual cloth colour and the actual lamps before committing. If you are choosing a new cloth, a mid-tone colour with strong contrast against both ball sets is worth more than any software upgrade."
+    ]
+   },
+   {
+    "h": "What Staff Have to Do",
+    "p": [
+     "Any system that needs recalibration every shift will be abandoned within a month. Budget for a fixed mount, a calibration routine that takes under two minutes, and a visible status indicator so a staff member can tell at a glance whether the table is being tracked correctly.",
+     "Also decide who owns a misread. If a customer disputes a score, the hall needs a policy before the first disagreement, not after."
+    ]
+   },
+   {
+    "h": "Integration and Data",
+    "p": [
+     "Scoring is the visible output, but the system also produces data: table utilisation, average frame length, peak hours. Those numbers are worth more to a hall operator than the scoreboard, because they inform staffing and pricing.",
+     "Check whether the data can be exported before you buy. A system that locks utilisation data inside its own dashboard gives you a scoreboard and takes away a management tool."
+    ]
+   },
+   {
+    "h": "A Realistic Rollout",
+    "p": [
+     "1. One table, two weeks, log every failure.",
+     "2. Fix mounting and lighting before touching software settings.",
+     "3. Write the calibration and dispute procedure.",
+     "4. Replicate to a second table and compare failure rates.",
+     "5. Expand only when the second table matches the first."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Snooker vs American Pool: Why AI Tools Differ",
+  "intro": "Snooker and American pool look like the same problem to a camera and are nothing alike underneath. Table size, ball size, pocket geometry and shot duration all change what a tracking system has to do. This comparison explains why a tool built for one rarely transfers cleanly to the other.",
+  "sections": [
+   {
+    "h": "Scale Changes the Detection Problem",
+    "p": [
+     "A snooker table is substantially larger with smaller balls, which means a camera that gives comfortable resolution on a pool table may not resolve snooker balls at all. Pixel size on the ball is the binding constraint, not the algorithm.",
+     "The practical consequence is that snooker setups need either a higher-resolution sensor, a closer mount, or both, and the mounting hardware often costs more than the software."
+    ]
+   },
+   {
+    "h": "Pocket Geometry and Difficulty Models",
+    "p": [
+     "Snooker pockets are cut with tight, angled jaws that reject balls approached along the rail, while American pool pockets are far more forgiving. Any tool that predicts pot probability from a simple line-to-pocket-centre calculation is wrong for snooker and only approximately right for pool.",
+     "Tools that model pocket acceptance explicitly are the ones worth using on a snooker table. If the app does not distinguish table types, treat its pot-rate figures as rough at best."
+    ]
+   },
+   {
+    "h": "Shot Duration and Session Rhythm",
+    "p": [
+     "Snooker frames are long, involve extended safety exchanges, and often produce very few pots per visit. Statistics built around pots-per-inning are meaningful in pool and nearly useless in snooker, where the interesting metrics are safety quality, positional control and break building.",
+     "A pool-oriented app will report a snooker player as having a terrible pot rate simply because most shots are not pot attempts."
+    ]
+   },
+   {
+    "h": "Cue Action and Ball Behaviour",
+    "p": [
+     "Snooker balls are smaller, lighter and travel on finer cloth, so cue-ball control is more sensitive to small stroke errors. A tool that measures cue angle and elbow stability is more informative on a snooker table than on a pool table, where the same error is partly absorbed by the heavier ball.",
+     "This is the one place where snooker players get more value from motion analysis than pool players do."
+    ]
+   },
+   {
+    "h": "What to Check Before Buying",
+    "p": [
+     "Confirm the tool supports your table type and reports the metrics that matter for your game. Confirm the camera resolution is adequate for your ball size at your mounting distance. Confirm the drill library, if any, uses your table's dimensions rather than a generic rectangle.",
+     "Most disappointments in this category come from buying a pool tool for a snooker table or the reverse. The overlap in branding is much larger than the overlap in engineering."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Pool Apps on Android: What Works Today",
+  "intro": "The physical-table AI scene grew up on iOS, and Android users have spent years reading feature lists for apps they cannot install. This guide maps what actually runs on Android now, what the platform limits, and how to get a usable setup without switching phones.",
+  "sections": [
+   {
+    "h": "Why the Platform Gap Exists",
+    "p": [
+     "Camera pipelines are the bottleneck. Real-time ball detection needs consistent frame timing, manual exposure and focus control, and stable access to the raw camera stream. iOS provides these through a mature, uniform API across devices; Android provides them through a fragmented set of vendor implementations.",
+     "A developer targeting iOS writes one pipeline. A developer targeting Android writes a pipeline that behaves differently on every phone generation, which is why the same feature takes far longer to ship."
+    ]
+   },
+   {
+    "h": "What Runs Well",
+    "p": [
+     "Web-based tools are the most reliable path on Android, because the browser handles the camera and the work happens server-side or in a standard pipeline. If a tool offers a browser version, it will usually function on a mid-range Android phone.",
+     "Motion and stroke analysis apps, which need less precise ball geometry than full table tracking, are also more commonly available and more stable on Android."
+    ]
+   },
+   {
+    "h": "Where Android Still Struggles",
+    "p": [
+     "Full-table shot tracking on a phone is the weak point. Thermal throttling drops the frame rate during a long session, and a dropped frame mid-shot corrupts the shot record. Manual camera control varies by manufacturer, so exposure settings that work on one device produce motion blur on another.",
+     "The practical workaround is a dedicated device: an older phone fixed on a mount, plugged in, doing nothing else. A phone that is also receiving messages and running background apps will not hold a steady frame rate."
+    ]
+   },
+   {
+    "h": "Getting a Usable Setup",
+    "p": [
+     "1. Lock the phone's screen orientation and disable battery optimisation for the app.",
+     "2. Set focus and exposure manually before the session and confirm they do not reset.",
+     "3. Keep the device charging and cool; run the session in a room that is not already hot.",
+     "4. Test with ten shots before committing to a full practice block.",
+     "5. If frame rate drops, reduce resolution rather than accepting dropped frames."
+    ]
+   },
+   {
+    "h": "The Honest Position",
+    "p": [
+     "Android is closing the gap but has not closed it. If full-table tracking accuracy is the deciding factor and you have an iPhone available, use it. If you are Android-only, pick tools that offer a browser client or focus on motion analysis rather than full ball tracking.",
+     "Do not buy hardware for an Android setup before confirming the app runs at a stable frame rate on your specific device. That single test saves more money than any comparison table."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "How to Test AI Ball Detection Accuracy Yourself",
+  "intro": "Every tool in this category claims accurate ball detection, and almost no user ever checks. A half-hour test with known ball positions will tell you more than any marketing page, and it will tell you where your setup fails rather than whether the app is good in the abstract.",
+  "sections": [
+   {
+    "h": "Build a Ground Truth",
+    "p": [
+     "Place balls at positions you can measure exactly: on the foot spot, on the head spot, frozen to a cushion at a known distance from a pocket, and in a straight line down the long axis. Photograph the layout from directly above so you have a reference image.",
+     "Then let the app read the same layout. Compare the reported positions against your measured ones. You are not looking for perfection; you are looking for the size and consistency of the error."
+    ]
+   },
+   {
+    "h": "Measure Error in Millimetres, Not Verdicts",
+    "p": [
+     "A detection error of one or two centimetres at the object ball is normal and tolerable for practice statistics. What matters is whether the error is consistent. A consistent offset can be calibrated away; a random error cannot.",
+     "Run the same layout ten times without touching anything. If the reported positions vary between runs, your problem is stability, not accuracy, and the fix is in the mount or the lighting."
+    ]
+   },
+   {
+    "h": "Test the Hard Cases",
+    "p": [
+     "Frozen balls, balls in a tight cluster, a ball partly under a rail shadow, and the cue ball next to the cue tip are where detection breaks. These occur constantly in real play, so a tool that handles spot shots but fails on clusters is not usable for practice.",
+     "Also test during a shot. Static accuracy and dynamic tracking are different problems, and a tool can read a still table perfectly while losing the cue ball the moment it moves."
+    ]
+   },
+   {
+    "h": "Change One Variable at a Time",
+    "p": [
+     "Run the baseline, then change only the lighting, then only the mount height, then only the cloth or ball set. Recording each result separately is what turns a vague impression into a setup you can trust.",
+     "Keep a short log: date, mount, lighting, error size, failure cases. Six entries will show you which variable actually controls your results."
+    ]
+   },
+   {
+    "h": "What a Good Result Looks Like",
+    "p": [
+     "Consistent error under about two centimetres on static layouts, no drift across ten runs, clusters detected correctly most of the time, and no loss of the cue ball during slow shots. That is a setup good enough to build practice decisions on.",
+     "If your numbers are worse, fix hardware before you change software. Nearly every accuracy complaint in this category traces back to a mount that moved or light that varied."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Billiards Tools for Coaches and Instructors",
+  "intro": "For a coach, AI tools are not a replacement for teaching but a way to make the invisible visible between lessons. Used well, they change what a student brings to the next session. Used badly, they produce a student who arrives with forty statistics and no question.",
+  "sections": [
+   {
+    "h": "What Changes in the Lesson",
+    "p": [
+     "The biggest shift is evidence. Instead of asking a student to recall how their last week of practice went, the coach opens a recording and sees it. Faults that appear only under fatigue or only in the fifth hour of a week become visible for the first time.",
+     "This also shortens the diagnostic phase of each lesson, because the coach arrives already knowing which fault is currently dominant rather than spending the first fifteen minutes finding it."
+    ]
+   },
+   {
+    "h": "Setting the Student's Recording Habit",
+    "p": [
+     "Give the student one instruction, not five: record every session with a fixed camera, and bring the footage. Everything else - which metrics to watch, what to compare - is the coach's job, and delegating it to the student usually produces either anxiety or indifference.",
+     "Specify the mount and lighting in writing. A student who improvises a setup each session generates data the coach cannot compare."
+    ]
+   },
+   {
+    "h": "Choosing Metrics That Matter",
+    "p": [
+     "Pick two or three metrics tied to the current correction, and ignore the rest. If the correction is elbow stability, watch the delivery angle across a week. If it is cue-ball control, watch positional error after contact. Rotation of metrics every few weeks keeps attention focused.",
+     "A tool that reports twenty numbers invites the student to optimise whichever is easiest to move, which is rarely the one that wins frames."
+    ]
+   },
+   {
+    "h": "The Feedback Loop",
+    "p": [
+     "1. Coach identifies one correction and its metric.",
+     "2. Student records every session for two weeks.",
+     "3. Coach compares the first and last recording, not every intermediate one.",
+     "4. If the metric moved, the correction worked; if not, change the drill rather than the metric.",
+     "5. Only then introduce a second correction.",
+     "This loop is slow by design. Two corrections pursued seriously in a month outperform ten corrections mentioned once."
+    ]
+   },
+   {
+    "h": "Commercial Realities",
+    "p": [
+     "Recording adds value a coach can charge for, but it also adds work: reviewing student footage takes time outside the lesson. Price accordingly, or use it as a differentiator for a small number of committed students rather than a service offered to everyone.",
+     "Data protection matters too. Student footage is personal data, and a coach storing it indefinitely without consent is a liability. Keep a retention policy from the first student, not the tenth."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Starting from Zero: An AI-Assisted Beginner Roadmap",
+  "intro": "Beginners are the group most likely to buy an AI tool and least likely to benefit from it, because analytics assume a stroke that does not exist yet. This roadmap puts the tool in the correct order, after the fundamentals it can measure rather than before.",
+  "sections": [
+   {
+    "h": "First, Build a Repeatable Stroke",
+    "p": [
+     "Before any software, a beginner needs a stance, a grip and a delivery that repeat within a few centimetres. This is learned by repetition and, ideally, by a few hours with a coach or an experienced player, not by watching statistics.",
+     "A tool measuring an inconsistent stroke produces inconsistent data, and the beginner learns to distrust the numbers rather than the motion."
+    ]
+   },
+   {
+    "h": "Second, Learn to Read the Table",
+    "p": [
+     "Aiming lines, contact points and cue-ball paths are visual skills. They are learned by shooting the same shot repeatedly and checking the result, which is slow but reliable. An aiming app can accelerate this, but only if used as a check on your own read rather than a substitute.",
+     "Spend a month on straight shots, cut shots at known angles and simple position before introducing an overlay."
+    ]
+   },
+   {
+    "h": "Third, Add Structure",
+    "p": [
+     "Once the stroke repeats and the read is roughly right, structure is the biggest gain available. A drill library with progressive difficulty turns aimless table time into practice, and it is the cheapest intervention in the whole category.",
+     "Choose drills by weakness, not by novelty. A beginner who practices the same four drills for two months improves faster than one who tries twenty."
+    ]
+   },
+   {
+    "h": "Fourth, Only Then Add Measurement",
+    "p": [
+     "Now statistics become meaningful, because there is a stable motion to measure and a stable baseline to compare against. Pot rate, positional error and cue-angle stability all start telling you something true.",
+     "Pick one metric. Work on it for a month. Compare a recording from the start of the month with one from the end."
+    ]
+   },
+   {
+    "h": "A Twelve-Week Shape",
+    "p": [
+     "1. Weeks 1-4: stance, grip, straight-shot repetition. No app.",
+     "2. Weeks 5-8: cut shots and basic position with four fixed drills. Free tier of a drill app is sufficient.",
+     "3. Weeks 9-10: fixed camera, record every session, review once a week.",
+     "4. Weeks 11-12: pick the single most repeated fault the recordings show and work only on it.",
+     "If you reach week twelve without a clear fault, the problem is the recording setup, not your game."
+    ]
+   }
+  ]
  }
 ];
 
@@ -1898,11 +2271,32 @@ document.querySelectorAll("[data-page]").forEach(a=>{
   });
 });
 
+
+// 首页最新教程：取最后 6 篇，倒序
+function renderLatest(){
+  const box = document.getElementById("latestGrid");
+  if(!box) return;
+  box.innerHTML = ARTICLES.slice(-6).reverse().map(a=>{
+    const idx = ARTICLES.indexOf(a);
+    return `<article class="latest-card" data-idx="${idx}">
+      <h3>${a.title}</h3>
+      <p>${a.intro}</p>
+    </article>`;
+  }).join("");
+  box.querySelectorAll(".latest-card").forEach(c=>{
+    c.addEventListener("click",()=>{
+      renderArticle(Number(c.dataset.idx));
+      showPage("article-detail");
+    });
+  });
+}
+
 renderCategories();
 renderTags();
 renderCards();
 renderRank();
 renderArticleList();
+renderLatest();
 </script>
 </body>
 </html>
