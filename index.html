@@ -28,6 +28,54 @@
   "inLanguage": ["zh-CN", "en"]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are these billiards AI tools for video games or for real tables?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every tool listed on this site is for real, physical pool and billiards tables. They use phone or fixed cameras, sensor attachments, or club-installed systems to analyse actual shots, stance, and table layouts. Simulator aids that only overlay on a computer game are deliberately excluded."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a special camera to start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Most posture and stroke tools accept an ordinary modern smartphone filming from the side, and table-vision tools work with a phone mounted overhead. A fixed mount or tripod improves consistency, but a dedicated machine-vision camera is only needed for club-level commercial scoring systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free way to start reviewing my game?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Several listed apps offer a usable free tier for basic shot recording and statistics, and some posture tools allow a limited number of video analyses before payment. A phone, a stable mount, and consistent lighting are enough to begin, and you can add paid tools once you know which metrics you actually use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is AI ball detection on a real table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Accuracy depends far more on setup than on the algorithm: a stable overhead camera, even lighting, and a calibrated table rectangle usually produce reliable ball positions. Perspective distortion, table glare, and a handheld camera are the common causes of wrong detection, so fix the camera first before judging the software."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI tools replace a human coach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They replace measurement, not judgement. AI tools record stance, cue delivery, ball positions, and shot outcomes frame by frame, which is exactly what a player cannot see alone. A coach still decides what to change and in what order. In practice the two work best together: the tool supplies evidence, the coach supplies the plan."
+      }
+    }
+  ]
+}
+</script>
 <style>
   :root{
     --bg:#0e1411;
@@ -170,12 +218,45 @@
   .article-view ul{margin:0 0 12px 20px;color:var(--text-dim);font-size:14.5px}
   .article-view li{margin-bottom:6px}
 
+  /* ===== 文章内链区块 ===== */
+  .rel-box{margin:32px 0 8px;padding-top:20px;border-top:1px solid var(--line)}
+  .rel-h{font-size:15px;margin:0 0 12px;color:var(--text);font-weight:700}
+  .rel-h + .rel-grid{margin-bottom:24px}
+  .rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .rel-tool{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--bg-soft)}
+  .rel-tool a{color:var(--accent);font-size:14px;text-decoration:none;display:block;margin-bottom:6px}
+  .rel-tool a:hover{text-decoration:underline}
+  .rel-tool p{margin:0;font-size:12.5px;color:var(--text-dim);line-height:1.55}
+  .rel-nav{margin:0 0 0 18px;padding:0}
+  .rel-nav li{margin-bottom:8px;font-size:14px}
+  .rel-link{color:var(--accent);cursor:pointer;text-decoration:none}
+  .rel-link:hover{text-decoration:underline}
+
   /* ===== 响应式 ===== */
   @media (max-width:960px){
     .layout{grid-template-columns:1fr}
     aside.filters,aside.sidebar{position:static}
     .cards{grid-template-columns:1fr}
     .hero h2{font-size:22px}
+  }
+  /* ===== 手机端阅读优化 ===== */
+  @media (max-width:640px){
+    body{padding:0 14px;font-size:16px}
+    .article-view{font-size:16px;line-height:1.78}
+    .article-view h2{font-size:20px;line-height:1.45;margin:16px 0 12px}
+    .article-view h4{font-size:16.5px;margin:22px 0 10px}
+    .article-view p{font-size:15.5px;line-height:1.8;margin-bottom:13px}
+    .article-view li{font-size:15.5px;line-height:1.7;margin-bottom:9px}
+    .rel-grid{grid-template-columns:1fr}
+    .rel-tool{padding:14px 16px}
+    .rel-tool a{font-size:15px;padding:4px 0}
+    .rel-link{display:inline-block;padding:6px 0;font-size:15px}
+    .card-link{padding:10px 0;font-size:15px}
+    .article-item{padding:18px 4px}
+    .article-item h3{font-size:16.5px;line-height:1.5}
+    .article-item p{font-size:15px;line-height:1.7}
+    .chip,button{min-height:34px}
+    .back{display:inline-block;padding:10px 0;font-size:15px}
   }
 </style>
 </head>
@@ -323,8 +404,8 @@ const TOOLS = [
 
   // 硬件配件
   { id:10, cat:"hardware", title:"球杆动作传感配件（QMD4 类）", desc:"绑在球杆后把上的蓝牙传感器，采集三维出杆数据并同步手机 App，属于线下动作训练类硬件，需配合对应软件使用。", tags:["海外","硬件"], hot:false, link:"https://www.theqmd.com/" },
-  { id:11, cat:"hardware", title:"高位俯拍摄像头支架", desc:"固定手机或摄像头的桌面上方支架，提供稳定俯拍机位，减少手持晃动与透视变形，是线下台面视觉识别和视频复盘的基础配件。", tags:["通用","硬件"], hot:false, link:"" },
-  { id:12, cat:"hardware", title:"台面补光方案", desc:"均匀照亮台呢、减少顶灯反光与局部阴影的灯光配置，可提升线下视频复盘与球位识别的稳定性，需按球桌尺寸选配。", tags:["通用","硬件"], hot:false, link:"" }
+  { id:11, cat:"hardware", title:"高位俯拍摄像头支架", desc:"固定手机或摄像头的桌面上方支架，提供稳定俯拍机位，减少手持晃动与透视变形，是线下台面视觉识别和视频复盘的基础配件。", tags:["通用","硬件"], hot:false, link:"", pl:"https://www.amazon.com/s?k=overhead+camera+boom+arm+desk+mount" },
+  { id:12, cat:"hardware", title:"台面补光方案", desc:"均匀照亮台呢、减少顶灯反光与局部阴影的灯光配置，可提升线下视频复盘与球位识别的稳定性，需按球桌尺寸选配。", tags:["通用","硬件"], hot:false, link:"", pl:"https://www.amazon.com/s?k=led+video+light+panel+billiard+table" }
 ];
 
 const ARTICLES = [
@@ -1493,6 +1574,115 @@ const ARTICLES = [
     ]
    }
   ]
+ },
+ {
+  "title": "Railbird vs CuePro vs DrillRoom: Which Real-Table AI Tool Fits Your Practice?",
+  "intro": "Railbird, CuePro and DrillRoom all work on a physical table, but they answer three different questions: how did my shots go, where should I aim, and what should I practise next. This comparison sorts out which job each tool does, so you pick the one that closes your actual gap instead of buying all three.",
+  "sections": [
+   {
+    "h": "Three Tools, Three Different Jobs",
+    "p": [
+     "It is tempting to compare these apps feature by feature and look for a winner. The more useful framing is to ask what question each one answers. Railbird answers \"how did my shots go over time\". CuePro answers \"where is my aiming line right now\". DrillRoom answers \"what should I practise this week\".",
+     "A player who never records anything gains most from tracking. A player who records constantly but still guesses the aiming line gains most from position planning. A player who knows both but practises without structure gains most from drills. The tool is a function of the gap, not of the brand."
+    ]
+   },
+   {
+    "h": "Railbird: Shot Tracking and Progress Stats",
+    "p": [
+     "Railbird uses AI camera tracking on a real table to log each shot and build statistics such as potting rate and consecutive-pot runs. The value is longitudinal: one session tells you almost nothing, twenty sessions reveal whether your long potting is improving or quietly regressing.",
+     "This makes it a good fit for players who already practise regularly but cannot remember what happened three weeks ago. It is a weaker fit for someone who plays once a month, because the statistics never accumulate enough samples to be meaningful.",
+     "Practical detail to check before committing: whether the required camera position works with your room layout, and whether the reported metrics are the ones you actually care about. A pot rate is useful; a hundred vanity numbers are not."
+    ]
+   },
+   {
+    "h": "CuePro: Aiming and Position Planning",
+    "p": [
+     "CuePro photographs a real table, reads the ball layout, and offers selection, aiming-line and cue-ball position guidance, with slow-motion review of your shots. It is used before and during a shot rather than after a session.",
+     "This is the closest thing in the category to an aiming aid, so expectations matter. Software can show a line across the table; it cannot feel the cue, judge the cloth speed, or account for how you actually deliver the stroke. Treat the line as a reference to compare against your own read, not as an answer to copy.",
+     "It suits players who consistently under-read cut angles or misjudge cue-ball paths. If your problem is a crooked stroke rather than a wrong read, a position tool will show you the right line and you will still miss it."
+    ]
+   },
+   {
+    "h": "DrillRoom: Structured Practice Sessions",
+    "p": [
+     "DrillRoom is built around drills: a library of practice routines, shot counting, speed control work and layout editing, with progress tracked across sessions. Its output is not analysis but a plan for the next hour on the table.",
+     "That makes it the most useful starting point for players who arrive at the table without a plan and default to knocking balls around. Structure alone often produces a visible improvement in a few weeks, before any advanced analytics are needed.",
+     "The limitation is that drills assume a reasonably sound stroke. If your fundamentals are unstable, a drill library will simply help you practise the wrong motion more consistently."
+    ]
+   },
+   {
+    "h": "How to Decide Between Them",
+    "p": [
+     "1. If you cannot describe your last ten sessions in numbers, start with tracking such as Railbird.",
+     "2. If you regularly misread cut angles or cue-ball paths, start with aiming and position guidance such as CuePro.",
+     "3. If you sit down without a practice plan, start with drills such as DrillRoom.",
+     "4. If two of these apply, fix the more fundamental one first: structure, then reading, then statistics.",
+     "5. Run one tool for at least a month before adding a second. Two half-used subscriptions teach you nothing."
+    ]
+   },
+   {
+    "h": "What None of Them Do",
+    "p": [
+     "None of these tools fixes a camera, a room or a stroke for you. Detection quality depends on a stable overhead or side mount, even lighting and a correct table rectangle, and every one of them will produce wrong numbers from a bad setup.",
+     "None of them replaces judgement either. They supply evidence about what happened; you still decide what to change. The players who improve fastest are the ones who take one clear finding from the data and work on it for a month, rather than chasing every metric the app can display."
+    ]
+   }
+  ]
+ },
+ {
+  "title": "AI Pool Training vs a Human Coach: An Honest Comparison",
+  "intro": "AI pool tools and human coaches are not competitors for the same job. Software measures what you cannot see; a coach decides what to change. This comparison looks at where each one is genuinely stronger, where each fails, and how to combine them without wasting money.",
+  "sections": [
+   {
+    "h": "What AI Actually Measures",
+    "p": [
+     "A camera-based tool records things a player physically cannot observe: the exact angle of the cue at address, whether the elbow dropped during delivery, how far the head rose before contact, and where every ball sat on the table before and after the shot.",
+     "It is also tireless. It will log the two-hundredth shot of a session as carefully as the first, and it will compare today's delivery with one from six weeks ago. No coach, however patient, can match that record-keeping.",
+     "What it does not do is interpret. A tool can tell you that your head moved 3 cm during the stroke; it cannot tell you whether that matters for the shot you just missed, or which of five faults to fix first."
+    ]
+   },
+   {
+    "h": "What a Coach Actually Does",
+    "p": [
+     "A coach supplies priorities. Faced with a player who drops the elbow, grips too tightly and reads cut angles badly, a good coach does not list three faults and leave. They pick the one that unlocks the others and give a drill for it this week.",
+     "A coach also supplies standards and immediate feedback. They know what a correct stroke feels like and can correct it within a few shots, where a tool may show the fault but leave you unsure how to change the motion.",
+     "The trade-off is cost, availability and consistency of recording. A weekly lesson cannot log every session, and two coaches may describe the same fault differently."
+    ]
+   },
+   {
+    "h": "Where AI Falls Short",
+    "p": [
+     "Setup is the first weakness. Detection depends on a stable mount, even lighting and a calibrated table area; a handheld phone under uneven light produces confident but wrong ball positions. The software rarely warns you that its input was poor.",
+     "Judgement is the second. Tools report metrics because metrics are measurable, not because they are important. A player can spend months optimising a statistic that has no bearing on winning frames.",
+     "Feel is the third. Nothing in the current generation of apps measures how the cue feels in your hand, and that remains the part of the game a player has to learn on the table."
+    ]
+   },
+   {
+    "h": "Where a Coach Falls Short",
+    "p": [
+     "Memory and continuity. A coach sees you for an hour; the other twenty-nine hours of practice are invisible unless you record them. Most players misremember their own sessions, and the faults that appear under pressure rarely show up in a lesson.",
+     "Cost and frequency. Regular coaching is expensive, and many players can only afford occasional sessions, which limits how quickly corrections can be reinforced.",
+     "Objectivity about progress. Both coach and player form impressions; a recorded history of shots is harder to argue with than either."
+    ]
+   },
+   {
+    "h": "A Practical Combined Workflow",
+    "p": [
+     "1. Record every practice session with a fixed camera and consistent lighting, even if you only review one shot.",
+     "2. Once a week, pick the single most repeated fault the recording shows. Not three, one.",
+     "3. Take that finding to a coach, or to a structured drill library if no coach is available, and ask specifically how to change it.",
+     "4. Practise the correction for two weeks, then compare a new recording against the old one.",
+     "5. Repeat. The tool supplies evidence, the coach supplies priorities, and the comparison decides whether the change worked."
+    ]
+   },
+   {
+    "h": "Choosing Your Starting Point",
+    "p": [
+     "If you have never had a lesson and your stroke is visibly inconsistent, coaching first is usually the better spend: a tool will faithfully record a broken motion. If you already know your main fault but cannot tell whether it is improving, recording first is cheaper and more objective than another lesson.",
+     "Most players end up using both, but not at the same time. Get one clear answer, work on it, verify with a recording, then move to the next. That loop, repeated honestly, is what separates steady improvers from players who collect tools."
+    ]
+   }
+  ]
  }
 ];
 
@@ -1547,7 +1737,8 @@ function renderCards(){
           return `<span class="${cls}">${tag}</span>`;
         }).join("")}
       </div>
-      ${t.link?`<a class="card-link" href="${t.link}" target="_blank" rel="noopener nofollow">访问官网 / 了解更多 →</a>`:`<span class="card-link" role="note" aria-label="暂无独立官网，通用配件按需选购" style="color:var(--text-dim)">通用配件 · 按需选购</span>`}
+      ${(t.aff||t.link)?`<a class="card-link" href="${t.aff||t.link}" target="_blank" rel="${t.aff?'sponsored nofollow':'noopener nofollow'}">${t.aff?'查看购买 / 了解更多 →':'访问官网 / 了解更多 →'}</a>`:`
+      <a class="card-link" href="${t.pl||'https://www.amazon.com/s?k='+encodeURIComponent(t.title)}" target="_blank" rel="sponsored nofollow noopener">到 Amazon 搜同类配件 →</a>`}
     </article>
   `).join("");
 }
@@ -1593,6 +1784,48 @@ function setMetaDescription(content){
   tag.setAttribute("content", content);
 }
 
+// ===== 文章内链：相关工具 + 相关阅读 =====
+const CAT_KEYWORDS = {
+  posture:  ["posture","stance","stroke","cue","grip","elbow","delivery","swing"],
+  table:    ["aim","aiming","vision","camera","table analysis","line","shot","ball detection"],
+  training: ["training","drill","plan","practice","data","metric","workflow","review","progress"],
+  venue:    ["hall","commercial","scoring","club","venue","facility"],
+  hardware: ["hardware","accessory","mount","light","tripod","setup","equipment"]
+};
+
+function relatedTools(a, n){
+  const t = (a.title + " " + a.intro).toLowerCase();
+  const scored = TOOLS.map(tool => {
+    const kw = CAT_KEYWORDS[tool.cat] || [];
+    let s = kw.reduce((acc,k)=> acc + (t.includes(k) ? 1 : 0), 0);
+    if(tool.hot && s > 0) s += 0.6;
+    // 英文站优先推荐海外工具，国内可用工具降权但仍可出现
+    if(tool.tags && tool.tags.includes("国内可用")) s -= 0.8;
+    return { tool, s };
+  }).filter(x=>x.s>0).sort((x,y)=>y.s-x.s);
+  // 同名工具只保留排最前的一个（如 QMD4 出现两次）
+  const seen = new Set();
+  const picked = [];
+  for(const x of scored){
+    const key = x.tool.title.replace(/（.*?）/g,"").trim();
+    if(seen.has(key)) continue;
+    seen.add(key);
+    picked.push(x.tool);
+    if(picked.length >= (n||3)) break;
+  }
+  return picked;
+}
+
+function relatedArticles(i, n){
+  const cur = ARTICLES[i];
+  const words = new Set((cur.title.toLowerCase().match(/[a-z]{4,}/g) || []));
+  return ARTICLES.map((a,j)=>{
+    if(j === i) return { j, s:-1 };
+    const w = (a.title.toLowerCase().match(/[a-z]{4,}/g) || []);
+    return { j, s: w.filter(x=>words.has(x)).length };
+  }).sort((x,y)=>y.s-x.s).slice(0, n||2).map(x=>({ i:x.j, title:ARTICLES[x.j].title }));
+}
+
 function renderArticle(i){
   const a=ARTICLES[i];
   document.title = a.title + " | Real Billiards AI Tools";
@@ -1611,12 +1844,35 @@ function renderArticle(i){
       }
     });
   });
+  const rt = relatedTools(a,3);
+  const ra = relatedArticles(i,2);
+  const relBlock = `
+    <div class="rel-box">
+      <h4 class="rel-h">相关工具（本站收录）</h4>
+      <div class="rel-grid">
+        ${rt.map(x=>`<div class="rel-tool">
+          <a href="${x.aff||x.link||x.pl||'#'}" target="_blank" rel="sponsored nofollow noopener"><b>${esc(x.title)}</b></a>
+          <p>${esc(x.desc.length>88 ? x.desc.slice(0,88)+"…" : x.desc)}</p>
+        </div>`).join("")}
+      </div>
+      <h4 class="rel-h">继续阅读</h4>
+      <ul class="rel-nav">
+        ${ra.map(x=>`<li><span class="rel-link" data-article="${x.i}">${esc(x.title)}</span></li>`).join("")}
+      </ul>
+    </div>`;
   articleDetail.innerHTML=`
     <span class="back" id="backToList">← 返回文章列表</span>
     <h2>${esc(a.title)}</h2>
     <p class="lead">${esc(a.intro)}</p>
-    ${body}`;
+    ${body}
+    ${relBlock}`;
   document.getElementById("backToList").addEventListener("click",()=>showPage("articles"));
+  articleDetail.querySelectorAll(".rel-link").forEach(el=>{
+    el.addEventListener("click",()=>{
+      renderArticle(Number(el.dataset.article));
+      window.scrollTo({top:0});
+    });
+  });
 }
 
 articleList.addEventListener("click",e=>{
